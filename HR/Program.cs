@@ -48,6 +48,16 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(services => new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,7 +73,7 @@ app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHead
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();

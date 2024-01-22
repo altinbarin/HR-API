@@ -19,6 +19,7 @@ namespace Business.AutoMapper.EmployeeProfile
             CreateMap<EmployeeRules, IEmployeeRules>().ReverseMap();
             CreateMap<Employee, UserForLoginDto>().ReverseMap();
             CreateMap<Employee, UserForRegisterDto>().ReverseMap();
+            CreateMap<Employee, EmployeeProfileDto>().ReverseMap();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Core.Entities.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,5 +49,38 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+        public Employee GetEmployee(Func<Employee, bool> filter)
+        {
+            using (var context = new HrDbContext())
+            {
+                var employee = context.Employees.Where(filter)
+                    .Select(h => new Employee
+                    {
+                        FirstName = h.FirstName,
+                        TurkishIdentificationNumber = h.TurkishIdentificationNumber,
+                        MiddleName = h.MiddleName,
+                        LastName = h.LastName,
+                        Email = h.Email,
+                        SecondLastname = h.SecondLastname,
+                        DateOfBirth = h.DateOfBirth,
+                        DateOfEmployment = h.DateOfEmployment,
+                        DateOfDismissal = h.DateOfDismissal,
+                        BirthLocation = h.BirthLocation,
+                        Company = h.Company,
+                        Position = h.Position,
+                        City = h.City,
+                        Salary = h.Salary,
+                        ImageData = h.ImageData,
+                        PhoneNumber = h.PhoneNumber,
+                        Address = h.Address,
+                        Profession = h.Profession,
+                        Department = h.Department,
+                        Status = h.Status,
+                    }).FirstOrDefault();
+
+
+                return employee;
+            }
+        }
     }
 }

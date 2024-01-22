@@ -23,5 +23,7 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(Employee employee);
         void Add(Employee employee);
         Employee GetByMail(string email);
+
+        EmployeeProfileDto GetProfile(string employeeMail);
     }
 }

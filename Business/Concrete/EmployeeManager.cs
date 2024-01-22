@@ -37,7 +37,8 @@ namespace Business.Concrete
 
         public Employee GetById(int employeeId)
         {
-            return _employeeDal.Get(h => h.Id == employeeId);
+            var employee =  _employeeDal.GetEmployee(h => h.Id == employeeId);
+            return employee;
         }
 
         public EmployeeSummaryDto GetSummary(int employeeId)
@@ -64,9 +65,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.EmployeeUpdated);
         }
 
-
-    
-
         public List<OperationClaim> GetClaims(Employee employee)
         {
             return _employeeDal.GetClaims(employee);
@@ -79,8 +77,15 @@ namespace Business.Concrete
 
         public Employee GetByMail(string email)
         {
+            var employee = _employeeDal.Get(u => u.Email == email);
+            return employee;
+        }
 
-            return _employeeDal.Get(u => u.Email == email);
+        public EmployeeProfileDto GetProfile(string employeeMail)
+        {
+            var employee = _employeeDal.GetEmployee(h => h.Email == employeeMail);
+            var employeeProfileDto = _mapper.Map<EmployeeProfileDto>(employee);
+            return employeeProfileDto;
         }
     }
 }
