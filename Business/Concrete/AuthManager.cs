@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.Helpers;
 using Core.Entities.Concrete;
@@ -25,7 +26,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<Employee> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+
         [HttpPost("register")]
         public ActionResult Register(UserForRegisterDto userForRegisterDto)
         {
@@ -44,11 +46,7 @@ namespace WebAPI.Controllers
 
             var registerResult = _authService.Register(userForRegisterDto);
 
-            //if (registerResult.Success)
-            //{
-            //    return Ok();
-            //}
-            //return BadRequest(registerResult.Message);
+            
 
             var result = _authService.CreateAccessToken(registerResult.Data);
             if (result.Success)
