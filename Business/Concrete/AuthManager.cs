@@ -24,6 +24,8 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
+
+        [SecuredOperation("admin")]
         public IDataResult<Employee> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;

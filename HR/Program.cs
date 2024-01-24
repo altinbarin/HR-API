@@ -8,6 +8,7 @@ using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Extensions;
+using System.Runtime.InteropServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,12 +69,11 @@ if (app.Environment.IsDevelopment())
 }
 app.ConfigureCustomExceptionMiddleware();
 
-app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();

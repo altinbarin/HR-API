@@ -21,7 +21,9 @@ namespace HR.Controllers
         [HttpGet("profilim")]
         public IActionResult Profilim()
         {
+            
             var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x=>x.Type == ClaimTypes.Email).Value;
+            
             var employee = _employeeService.GetProfile(employeeMail);
             return Ok(employee);
         }
@@ -41,14 +43,14 @@ namespace HR.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] EmployeeUpdateDto updateDto)
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] EmployeeUpdateDto updateDto)
         {
 
-            var employee = _employeeService.GetById(id);
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
 
-            if (employee == null)
-                return NotFound();
+            var employee = _employeeService.GetByMail(employeeMail);
 
             //kontrol edilecek
             employee.Address = updateDto.Address;
@@ -63,7 +65,29 @@ namespace HR.Controllers
             return BadRequest(result);
         }
 
-      
+        //[HttpPut("{id}")]
+        //public IActionResult Update(int id, [FromBody] EmployeeUpdateDto updateDto)
+        //{
+
+        //    var employee = _employeeService.GetById(id);
+
+        //    if (employee == null)
+        //        return NotFound();
+
+        //    //kontrol edilecek
+        //    employee.Address = updateDto.Address;
+        //    employee.PhoneNumber = updateDto.PhoneNumber;
+        //    employee.ImageData = updateDto.ImageData;
+
+        //    var result = _employeeService.Update(employee);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
+
+
 
     }
 }

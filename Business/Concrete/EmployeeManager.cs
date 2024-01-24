@@ -29,7 +29,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public List<Employee> GetAll()
         {
             return _employeeDal.GetAll(h => h.Status);
