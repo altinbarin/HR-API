@@ -1,12 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Entities.Concrete;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Core.Entities.Concrete;
 
 
 namespace DataAccess.Concrete.EntityFramework

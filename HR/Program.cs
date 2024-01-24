@@ -9,12 +9,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Core.Extensions;
 using System.Runtime.InteropServices;
+using Microsoft.EntityFrameworkCore;
+using System;
+using DataAccess.Concrete.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<HrDbContext>(
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("ConnString")));
 
 builder.Services.AddCors();
 
