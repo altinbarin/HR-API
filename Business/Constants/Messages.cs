@@ -8,12 +8,26 @@ namespace Business.Constants
 {
     public static class Messages
     {
+        public static string NotAValidTc = "Geçerli bir Tc kimlik numarası giriniz";
+
+        public static string NotAValidPhoneNumber = "Geçerli bir telefon numarası giriniz.";
+
+        public static string NotAValidSalary = "Maaş değeri sıfırdan küçük olamaz";
+
+        public static string NotAValidEmail = "Geçerli bir email adresi giriniz.";
+
         public static string PhoneNumberAlreadyExist = "Bu telefon numarası zaten kayıtlı.";
 
         public static string HeadOfDepartmentUpdated = "Yönetici güncellendi.";
 
+        public static string PasswordChanged= "Parola güncellendi.";
+
+
         public static string EmployeeUpdated = "Personel güncellendi.";
 
+        public static string ThisFieldIsRequired = "Bu alan boş bırakılamaz";
+
+        public static string LetterOnly = "Sadece harf giriniz";
         
 
         public static string MaintenanceTime = "Sistem bakımda";

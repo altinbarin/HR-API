@@ -10,10 +10,12 @@ namespace WebAPI.Controllers
     public class AuthController : Controller
     {
         private IAuthService _authService;
+        private IEmployeeService _employeeService;
 
-        public AuthController(IAuthService authService)
+        public AuthController(IAuthService authService, IEmployeeService employeeService)
         {
             _authService = authService;
+            _employeeService = employeeService;
         }
 
         [HttpPost("login")]
@@ -57,22 +59,23 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        //[HttpPost("forgotpassword")]
-        //public ActionResult ForgotPassword(string email)
-        //{
-        //    var userExists = _authService.UserExists(email);
-        //    if (!userExists.Success)
-        //    {
-        //        return BadRequest(userExists.Message);
-        //    }
 
-        //    var result = _authService.ForgotPassword(email);
-        //    if (result.Success)
-        //    {
-        //        return Ok(result.Message);
-        //    }
+        [HttpPost("forgotpassword")]
+        public ActionResult ForgotPassword(string email)
+        {
+            var userExists = _authService.UserNotExists(email);
+            if (userExists.Success)
+            {
+                return BadRequest(userExists.Message);
+            }
 
-        //    return BadRequest(result.Message);
-        //}
+            var result = _authService.ChangePassword(email);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+
+            return BadRequest(result.Message);
+        }
     }
 }

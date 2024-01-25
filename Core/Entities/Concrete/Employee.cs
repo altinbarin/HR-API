@@ -1,9 +1,5 @@
 ﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.Helpers;
 
 namespace Entities.Concrete
 {
@@ -17,7 +13,9 @@ namespace Entities.Concrete
         public string EmailForRegister{ get; set; }
         public string? Email
         {
-            get { return $"{FirstName.ToLower()}.{LastName.ToLower()}@bilgeadamboost.com"; }
+            //get { 
+            //    return $"{FirstName.ToLower()}.{LastName.ToLower()}@bilgeadamboost.com"; }
+            get { return EmailConvertHelper.GenerateDefaultEmail(FirstName, LastName); }
             set { }
         }
         public byte[] PasswordSalt { get; set; }

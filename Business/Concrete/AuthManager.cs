@@ -3,10 +3,13 @@ using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.Helpers;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
 
@@ -17,16 +20,19 @@ namespace Business.Concrete
         private IEmployeeService _employeeService;
         private ITokenHelper _tokenHelper;
         private IMapper _mapper;
+        private IEmployeeDal _employeeDal;
 
-        public AuthManager(ITokenHelper tokenHelper, IEmployeeService employeeService, IMapper mapper)
+        public AuthManager(ITokenHelper tokenHelper, IEmployeeService employeeService, IMapper mapper, IEmployeeDal employeeDal)
         {
             _tokenHelper = tokenHelper;
             _employeeService = employeeService;
             _mapper = mapper;
+            _employeeDal = employeeDal;
         }
 
 
         //[SecuredOperation("admin")]
+        [ValidationAspect(typeof(UserForRegisterDtoValidator))]
         public IDataResult<Employee> Register(UserForRegisterDto userForRegisterDto)
         {
             byte[] passwordHash, passwordSalt;
@@ -49,6 +55,8 @@ namespace Business.Concrete
             return new ErrorDataResult<Employee>(Messages.EmailNotSent);
         }
 
+
+        [ValidationAspect(typeof(UserForLoginDtoValidator))]
         public IDataResult<Employee> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _employeeService.GetByMail(userForLoginDto.Email);
@@ -75,11 +83,47 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult UserNotExists(string email)
+        {
+
+            if (_employeeService.GetByMail(email) == null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            return new SuccessResult();
+        }
+
         public IDataResult<AccessToken> CreateAccessToken(Employee employee)
         {
             var claims = _employeeService.GetClaims(employee);
             var accessToken = _tokenHelper.CreateToken(employee, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+        }
+
+        public IDataResult<ForgotPasswordDto> ChangePassword(string email)
+        {
+
+            var user = _employeeService.GetByMail(email);
+            if (user is null)
+            {
+                return new ErrorDataResult<ForgotPasswordDto>(Messages.UserNotFound);
+            }
+            byte[] passwordHash, passwordSalt;
+            string password;
+            bool isEmailSent = EmailSender.SendPasswordCodeEmail(email, out password);
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            if (isEmailSent)
+            {
+                _employeeDal.Update(user);
+
+                return new SuccessDataResult<ForgotPasswordDto>(Messages.PasswordChanged);
+            }
+
+            return new ErrorDataResult<ForgotPasswordDto>(Messages.EmailNotSent);
         }
     }
 }
