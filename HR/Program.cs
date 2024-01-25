@@ -19,10 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<HrDbContext>(
-    option => option.UseSqlServer(builder.Configuration.GetConnectionString("ConnString")));
 
-builder.Services.AddCors();
 
 var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -55,17 +52,11 @@ builder.Services.AddSwaggerGen();
 builder.Host.UseServiceProviderFactory(services => new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(builder => { builder.RegisterModule(new AutofacBusinessModule()); });
 
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CorsPolicy", builder =>
-    {
-        builder.AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader();
-    });
-});
+
 
 var app = builder.Build();
+
+app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -75,7 +66,6 @@ if (app.Environment.IsDevelopment())
 }
 app.ConfigureCustomExceptionMiddleware();
 
-app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
