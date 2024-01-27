@@ -12,7 +12,7 @@ namespace DataAccess.Mappings
         {
 
 
-            builder.Property(e=>e.Address).HasMaxLength(250);
+            builder.Property(e => e.Address).HasMaxLength(250);
             builder.Property(e => e.BirthLocation).HasMaxLength(100);
             builder.Property(e => e.Department).HasMaxLength(100);
             builder.Property(e => e.FirstName).HasMaxLength(50);
@@ -24,6 +24,19 @@ namespace DataAccess.Mappings
             builder.Property(e => e.PasswordHash).HasColumnType("varbinary(500)");
             builder.Property(e => e.PasswordSalt).HasColumnType("varbinary(500)");
             builder.Property(e => e.Status).HasDefaultValue(true);
+
+           // builder.Property(e => e.DateOfBirth).HasConversion(
+           //                    v => v.ToString("yyyy-MM-dd"),
+           //                                   v => DateTime.Parse(v));
+
+           // builder.Property(e => e.DateOfDismissal)
+           //.HasConversion(
+           //    v => v.HasValue ? v.Value.ToString("yyyy-MM-dd") : null,
+           //    v => !string.IsNullOrEmpty(v) ? DateTime.Parse(v) : (DateTime?)null
+           //);
+
+           // builder.Property(e => e.DateOfEmployment).HasConversion(
+           //   v => v.ToString("yyyy-MM-dd"), v => DateTime.Parse(v));
 
 
 
@@ -91,7 +104,7 @@ namespace DataAccess.Mappings
             hakan.PasswordSalt = passwordSalt;
 
 
-            
+
 
 
 

@@ -63,6 +63,19 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RequestApprovalStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestApprovalStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Title",
                 columns: table => new
                 {
@@ -89,13 +102,46 @@ namespace DataAccess.Migrations
                     table.PrimaryKey("PK_UserOperationClaims", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "VocationLeaveRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ResponseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    VocationLeaveTypeId = table.Column<int>(type: "int", nullable: false),
+                    RequestApprovalStatusId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VocationLeaveRequests", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VocationLeaveTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Day = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VocationLeaveTypes", x => x.Id);
+                });
+
             migrationBuilder.InsertData(
                 table: "Employees",
                 columns: new[] { "Id", "Address", "BirthLocation", "City", "Company", "DateOfBirth", "DateOfDismissal", "DateOfEmployment", "Department", "Email", "EmailForRegister", "FirstName", "ImageData", "LastName", "MiddleName", "PasswordHash", "PasswordSalt", "PhoneNumber", "Position", "Profession", "Salary", "SecondLastname", "Status", "TitleId", "TurkishIdentificationNumber" },
                 values: new object[,]
                 {
-                    { 1, "Kadıköy", "İstanbul", "İstanbul", "Bilge Adam", new DateTime(1997, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "IT", "furkan.altinbarin@bilgeadamboost.com", "furkanaltinbarin@gmail.com", "Furkan", null, "Altınbarın", null, new byte[] { 249, 107, 236, 230, 76, 17, 87, 39, 142, 212, 212, 242, 233, 20, 144, 6, 125, 218, 94, 16, 46, 47, 30, 204, 149, 126, 133, 106, 248, 133, 66, 8, 202, 186, 18, 189, 111, 16, 233, 14, 25, 237, 225, 24, 204, 43, 237, 206, 2, 200, 119, 82, 126, 147, 45, 55, 49, 71, 184, 246, 149, 36, 248, 231 }, new byte[] { 10, 199, 211, 205, 41, 85, 100, 147, 220, 109, 187, 67, 240, 246, 201, 92, 160, 206, 70, 36, 21, 200, 61, 220, 245, 200, 125, 30, 252, 15, 105, 190, 58, 223, 102, 253, 83, 66, 229, 109, 34, 67, 138, 28, 75, 228, 61, 129, 13, 26, 120, 92, 97, 248, 16, 52, 172, 204, 218, 218, 37, 65, 71, 78, 82, 108, 160, 32, 72, 191, 61, 122, 175, 163, 140, 38, 161, 224, 115, 56, 46, 82, 220, 7, 163, 128, 158, 218, 86, 144, 77, 64, 169, 218, 142, 86, 248, 79, 161, 41, 83, 51, 205, 20, 108, 53, 239, 159, 98, 108, 147, 30, 193, 197, 233, 111, 48, 132, 148, 112, 163, 189, 61, 103, 44, 19, 8, 89 }, "05321234567", "Head of Department", "Software Developer", 10000m, null, true, 1, "12345678910" },
-                    { 2, "Kartal", "İstanbul", "İstanbul", "Bilge Adam", new DateTime(1995, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "IT", "hakan.toraman@bilgeadamboost.com", "hakantoraman@gmail.com", "Hakan", null, "Toraman", null, new byte[] { 11, 165, 99, 162, 103, 37, 108, 159, 68, 11, 102, 255, 7, 56, 56, 120, 89, 21, 40, 112, 248, 253, 184, 138, 123, 189, 120, 82, 123, 175, 186, 125, 208, 8, 39, 84, 136, 236, 197, 27, 172, 160, 61, 29, 54, 224, 156, 58, 50, 101, 164, 100, 8, 248, 197, 195, 79, 68, 115, 66, 118, 100, 62, 88 }, new byte[] { 199, 193, 14, 154, 121, 107, 210, 9, 244, 198, 202, 221, 219, 93, 235, 38, 63, 96, 220, 115, 3, 27, 208, 124, 247, 136, 181, 195, 156, 205, 181, 216, 134, 97, 5, 52, 22, 211, 211, 231, 64, 174, 164, 168, 142, 227, 130, 30, 23, 249, 1, 157, 77, 94, 48, 160, 47, 44, 139, 228, 180, 144, 247, 95, 239, 131, 89, 113, 20, 22, 142, 5, 134, 67, 239, 154, 154, 184, 34, 103, 75, 200, 211, 101, 189, 144, 170, 48, 180, 236, 149, 171, 177, 112, 40, 92, 144, 222, 0, 64, 46, 107, 163, 138, 246, 194, 152, 250, 3, 185, 199, 156, 80, 133, 191, 218, 61, 17, 101, 184, 115, 96, 10, 23, 166, 44, 94, 94 }, "05321234567", "Junior Developer", "Software Developer", 10000m, null, true, 2, "12345678910" }
+                    { 1, "Kadıköy", "İstanbul", "İstanbul", "Bilge Adam", new DateTime(1997, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "IT", "furkan.altinbarin@bilgeadamboost.com", "furkanaltinbarin@gmail.com", "Furkan", null, "Altınbarın", null, new byte[] { 4, 80, 137, 65, 9, 233, 46, 191, 61, 218, 77, 170, 159, 30, 241, 52, 194, 220, 63, 202, 247, 7, 72, 182, 153, 58, 40, 253, 195, 75, 150, 131, 144, 62, 88, 8, 205, 63, 134, 163, 239, 228, 154, 40, 125, 213, 170, 170, 13, 104, 188, 75, 20, 43, 46, 234, 234, 77, 20, 107, 149, 185, 204, 198 }, new byte[] { 187, 54, 155, 240, 17, 109, 163, 216, 142, 251, 174, 138, 99, 21, 213, 168, 228, 26, 172, 253, 142, 213, 131, 193, 169, 239, 25, 138, 168, 124, 194, 105, 7, 224, 96, 188, 16, 149, 25, 255, 195, 35, 35, 203, 76, 144, 174, 31, 130, 53, 253, 158, 170, 189, 87, 189, 81, 78, 162, 235, 94, 181, 4, 158, 154, 181, 232, 8, 162, 186, 222, 215, 116, 138, 135, 217, 61, 28, 38, 14, 81, 130, 94, 100, 33, 87, 164, 136, 225, 186, 51, 164, 180, 219, 65, 85, 233, 42, 254, 66, 201, 23, 106, 204, 221, 102, 140, 219, 90, 111, 134, 131, 216, 248, 174, 255, 130, 104, 44, 202, 131, 251, 31, 210, 181, 52, 152, 53 }, "05321234567", "Head of Department", "Software Developer", 10000m, null, true, 1, "12345678910" },
+                    { 2, "Kartal", "İstanbul", "İstanbul", "Bilge Adam", new DateTime(1995, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "IT", "hakan.toraman@bilgeadamboost.com", "hakantoraman@gmail.com", "Hakan", null, "Toraman", null, new byte[] { 157, 129, 44, 59, 203, 125, 227, 119, 187, 14, 63, 193, 168, 183, 168, 15, 174, 254, 8, 155, 29, 230, 156, 234, 113, 236, 56, 143, 248, 72, 211, 255, 13, 190, 187, 211, 95, 14, 8, 150, 139, 236, 120, 121, 223, 18, 3, 22, 66, 38, 225, 163, 59, 238, 128, 8, 220, 140, 230, 161, 205, 64, 18, 136 }, new byte[] { 78, 127, 157, 122, 72, 42, 231, 135, 37, 114, 225, 90, 206, 139, 0, 52, 100, 48, 189, 58, 22, 141, 4, 3, 50, 148, 88, 52, 236, 9, 18, 205, 59, 41, 83, 135, 213, 243, 38, 101, 152, 183, 187, 78, 22, 128, 203, 64, 232, 227, 64, 67, 7, 82, 105, 19, 184, 165, 225, 223, 121, 16, 67, 231, 130, 87, 105, 103, 63, 26, 205, 171, 36, 31, 107, 186, 95, 40, 105, 131, 177, 100, 67, 175, 174, 144, 159, 170, 175, 250, 33, 205, 222, 114, 43, 175, 62, 255, 233, 255, 252, 161, 47, 244, 166, 4, 176, 93, 116, 146, 73, 70, 133, 137, 240, 143, 194, 156, 37, 51, 213, 217, 224, 41, 61, 247, 249, 52 }, "05321234567", "Junior Developer", "Software Developer", 10000m, null, true, 2, "12345678910" }
                 });
 
             migrationBuilder.InsertData(
@@ -105,6 +151,17 @@ namespace DataAccess.Migrations
                 {
                     { 1, "admin" },
                     { 2, "user" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RequestApprovalStatuses",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Pending" },
+                    { 2, "Approved" },
+                    { 3, "Rejected" },
+                    { 4, "Canceled" }
                 });
 
             migrationBuilder.InsertData(
@@ -124,6 +181,21 @@ namespace DataAccess.Migrations
                     { 1, 1, 1 },
                     { 2, 2, 2 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "VocationLeaveTypes",
+                columns: new[] { "Id", "Day", "Name" },
+                values: new object[,]
+                {
+                    { 1, 14, "Annual Leave" },
+                    { 2, 5, "Sick Leave" },
+                    { 3, 3, "Marriage Leave" },
+                    { 4, 120, "Maternity Leave" },
+                    { 5, 5, "Paternity Leave" },
+                    { 6, 3, "Bereavement Leave" },
+                    { 7, 1, "Unpaid Leave" },
+                    { 8, 1, "Other" }
+                });
         }
 
         /// <inheritdoc />
@@ -136,10 +208,19 @@ namespace DataAccess.Migrations
                 name: "OperationClaims");
 
             migrationBuilder.DropTable(
+                name: "RequestApprovalStatuses");
+
+            migrationBuilder.DropTable(
                 name: "Title");
 
             migrationBuilder.DropTable(
                 name: "UserOperationClaims");
+
+            migrationBuilder.DropTable(
+                name: "VocationLeaveRequests");
+
+            migrationBuilder.DropTable(
+                name: "VocationLeaveTypes");
         }
     }
 }

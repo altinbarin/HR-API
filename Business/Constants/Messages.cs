@@ -20,14 +20,19 @@ namespace Business.Constants
 
         public static string HeadOfDepartmentUpdated = "Yönetici güncellendi.";
 
+        public static string TheDateCanNotBeAPreviousDate = "İleri bir tarih seçin";
+
         public static string PasswordChanged= "Parola güncellendi.";
 
+        public static string VocationLeaveRequestNotFound = "İzin talebi bulunamadı.";
 
         public static string EmployeeUpdated = "Personel güncellendi.";
 
         public static string ThisFieldIsRequired = "Bu alan boş bırakılamaz";
 
         public static string LetterOnly = "Sadece harf giriniz";
+        public static string VocationLeaveRequestUpdated = "İzin durumu başarıyla güncellendi";
+        public static string VocationLeaveRequestNotUpdated = "İzin durumu güncellenemedi!";
         
 
         public static string MaintenanceTime = "Sistem bakımda";
@@ -43,5 +48,9 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Kullanıcı mevcut";
         public static string AccessTokenCreated = "Token oluşturuldu";
         public static string EmailNotSent = "Tek kullanımlık şifre gönderilemedi";
+
+        public static string VocationLeaveRequestAdded = "İzin isteği başarıyla eklendi.";
+        public static string VocationLeaveRequestNotAdded = "İzin isteği eklenemedi";
+
     }
 }

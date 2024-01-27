@@ -25,6 +25,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 
+            builder.RegisterType<VocationLeaveRequestManager>().As<IVocationLeaveRequestService>().SingleInstance();
+            builder.RegisterType<EfVocationRequestDal>().As<IVocationRequestDal>().SingleInstance();
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {               

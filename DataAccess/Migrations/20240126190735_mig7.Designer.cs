@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(HrDbContext))]
-    [Migration("20240125145720_mig1")]
-    partial class mig1
+    [Migration("20240126190735_mig7")]
+    partial class mig7
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,46 @@ namespace DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Core.Entities.Concrete.RequestApprovalStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RequestApprovalStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Pending"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Approved"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Rejected"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Canceled"
+                        });
+                });
+
             modelBuilder.Entity("Core.Entities.Concrete.UserOperationClaim", b =>
                 {
                     b.Property<int>("Id")
@@ -87,6 +127,132 @@ namespace DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Core.Entities.Concrete.VocationLeaveRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RequestApprovalStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VocationLeaveTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VocationLeaveRequests");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EmployeeId = 2,
+                            EndingDate = new DateTime(2021, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RequestApprovalStatusId = 1,
+                            RequestDate = new DateTime(2024, 1, 26, 22, 7, 34, 765, DateTimeKind.Local).AddTicks(5812),
+                            StartingDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VocationLeaveTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EmployeeId = 2,
+                            EndingDate = new DateTime(2022, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RequestApprovalStatusId = 2,
+                            RequestDate = new DateTime(2024, 1, 26, 22, 7, 34, 765, DateTimeKind.Local).AddTicks(5822),
+                            StartingDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            VocationLeaveTypeId = 2
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Concrete.VocationLeaveType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VocationLeaveTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Day = 14,
+                            Name = "Annual Leave"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Day = 5,
+                            Name = "Sick Leave"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Day = 3,
+                            Name = "Marriage Leave"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Day = 120,
+                            Name = "Maternity Leave"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Day = 5,
+                            Name = "Paternity Leave"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Day = 3,
+                            Name = "Bereavement Leave"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Day = 1,
+                            Name = "Unpaid Leave"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Day = 1,
+                            Name = "Other"
+                        });
+                });
+
             modelBuilder.Entity("Entities.Concrete.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -113,14 +279,14 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("DateOfBirth")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime?>("DateOfDismissal")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("DateOfDismissal")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("DateOfEmployment")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("DateOfEmployment")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Department")
                         .IsRequired()
@@ -202,15 +368,15 @@ namespace DataAccess.Migrations
                             BirthLocation = "İstanbul",
                             City = "İstanbul",
                             Company = "Bilge Adam",
-                            DateOfBirth = new DateTime(1995, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEmployment = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1995, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            DateOfEmployment = new DateTimeOffset(new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Department = "IT",
                             Email = "hakan.toraman@bilgeadamboost.com",
                             EmailForRegister = "hakantoraman@gmail.com",
                             FirstName = "Hakan",
                             LastName = "Toraman",
-                            PasswordHash = new byte[] { 11, 165, 99, 162, 103, 37, 108, 159, 68, 11, 102, 255, 7, 56, 56, 120, 89, 21, 40, 112, 248, 253, 184, 138, 123, 189, 120, 82, 123, 175, 186, 125, 208, 8, 39, 84, 136, 236, 197, 27, 172, 160, 61, 29, 54, 224, 156, 58, 50, 101, 164, 100, 8, 248, 197, 195, 79, 68, 115, 66, 118, 100, 62, 88 },
-                            PasswordSalt = new byte[] { 199, 193, 14, 154, 121, 107, 210, 9, 244, 198, 202, 221, 219, 93, 235, 38, 63, 96, 220, 115, 3, 27, 208, 124, 247, 136, 181, 195, 156, 205, 181, 216, 134, 97, 5, 52, 22, 211, 211, 231, 64, 174, 164, 168, 142, 227, 130, 30, 23, 249, 1, 157, 77, 94, 48, 160, 47, 44, 139, 228, 180, 144, 247, 95, 239, 131, 89, 113, 20, 22, 142, 5, 134, 67, 239, 154, 154, 184, 34, 103, 75, 200, 211, 101, 189, 144, 170, 48, 180, 236, 149, 171, 177, 112, 40, 92, 144, 222, 0, 64, 46, 107, 163, 138, 246, 194, 152, 250, 3, 185, 199, 156, 80, 133, 191, 218, 61, 17, 101, 184, 115, 96, 10, 23, 166, 44, 94, 94 },
+                            PasswordHash = new byte[] { 249, 164, 8, 45, 193, 174, 25, 55, 254, 241, 0, 220, 138, 232, 130, 214, 194, 252, 91, 144, 188, 171, 179, 120, 46, 69, 228, 12, 35, 97, 60, 218, 144, 130, 164, 171, 24, 73, 254, 154, 243, 146, 175, 236, 121, 114, 168, 114, 244, 80, 202, 61, 154, 198, 202, 64, 60, 122, 68, 80, 158, 216, 36, 117 },
+                            PasswordSalt = new byte[] { 210, 77, 139, 104, 128, 96, 35, 112, 13, 231, 88, 112, 46, 248, 59, 181, 2, 38, 0, 39, 203, 146, 234, 235, 205, 132, 38, 157, 222, 7, 79, 78, 250, 86, 188, 60, 0, 167, 52, 31, 211, 180, 121, 99, 26, 19, 202, 202, 6, 105, 239, 222, 59, 153, 102, 174, 195, 95, 220, 53, 213, 145, 106, 227, 23, 108, 56, 143, 198, 240, 0, 8, 204, 180, 6, 70, 152, 61, 185, 188, 196, 244, 170, 180, 181, 206, 112, 54, 156, 151, 45, 124, 125, 104, 64, 35, 72, 141, 65, 1, 207, 7, 119, 188, 85, 47, 186, 118, 69, 207, 251, 158, 56, 146, 131, 62, 58, 18, 17, 175, 212, 107, 13, 25, 196, 230, 111, 249 },
                             PhoneNumber = "05321234567",
                             Position = "Junior Developer",
                             Profession = "Software Developer",
@@ -226,15 +392,15 @@ namespace DataAccess.Migrations
                             BirthLocation = "İstanbul",
                             City = "İstanbul",
                             Company = "Bilge Adam",
-                            DateOfBirth = new DateTime(1997, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEmployment = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTimeOffset(new DateTime(1997, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 2, 0, 0, 0)),
+                            DateOfEmployment = new DateTimeOffset(new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 3, 0, 0, 0)),
                             Department = "IT",
                             Email = "furkan.altinbarin@bilgeadamboost.com",
                             EmailForRegister = "furkanaltinbarin@gmail.com",
                             FirstName = "Furkan",
                             LastName = "Altınbarın",
-                            PasswordHash = new byte[] { 249, 107, 236, 230, 76, 17, 87, 39, 142, 212, 212, 242, 233, 20, 144, 6, 125, 218, 94, 16, 46, 47, 30, 204, 149, 126, 133, 106, 248, 133, 66, 8, 202, 186, 18, 189, 111, 16, 233, 14, 25, 237, 225, 24, 204, 43, 237, 206, 2, 200, 119, 82, 126, 147, 45, 55, 49, 71, 184, 246, 149, 36, 248, 231 },
-                            PasswordSalt = new byte[] { 10, 199, 211, 205, 41, 85, 100, 147, 220, 109, 187, 67, 240, 246, 201, 92, 160, 206, 70, 36, 21, 200, 61, 220, 245, 200, 125, 30, 252, 15, 105, 190, 58, 223, 102, 253, 83, 66, 229, 109, 34, 67, 138, 28, 75, 228, 61, 129, 13, 26, 120, 92, 97, 248, 16, 52, 172, 204, 218, 218, 37, 65, 71, 78, 82, 108, 160, 32, 72, 191, 61, 122, 175, 163, 140, 38, 161, 224, 115, 56, 46, 82, 220, 7, 163, 128, 158, 218, 86, 144, 77, 64, 169, 218, 142, 86, 248, 79, 161, 41, 83, 51, 205, 20, 108, 53, 239, 159, 98, 108, 147, 30, 193, 197, 233, 111, 48, 132, 148, 112, 163, 189, 61, 103, 44, 19, 8, 89 },
+                            PasswordHash = new byte[] { 9, 75, 227, 109, 174, 144, 126, 221, 28, 191, 20, 133, 54, 204, 52, 38, 228, 198, 97, 168, 19, 1, 220, 79, 241, 175, 0, 51, 30, 4, 223, 148, 170, 172, 252, 102, 185, 255, 195, 198, 245, 138, 145, 216, 98, 17, 140, 218, 109, 188, 139, 179, 53, 61, 255, 164, 127, 34, 201, 30, 134, 47, 44, 223 },
+                            PasswordSalt = new byte[] { 249, 216, 126, 45, 170, 187, 202, 218, 110, 162, 165, 110, 133, 139, 62, 96, 24, 159, 131, 164, 59, 74, 116, 50, 7, 54, 82, 242, 13, 30, 74, 77, 198, 182, 109, 155, 105, 248, 125, 173, 76, 197, 95, 193, 91, 76, 238, 155, 60, 206, 223, 174, 131, 80, 193, 250, 94, 164, 134, 96, 172, 47, 169, 167, 246, 53, 3, 101, 87, 14, 182, 89, 151, 174, 156, 39, 22, 90, 76, 47, 48, 221, 30, 9, 78, 226, 27, 240, 121, 17, 114, 133, 78, 86, 168, 149, 61, 230, 44, 35, 98, 106, 91, 179, 181, 250, 86, 16, 65, 208, 126, 130, 139, 252, 150, 88, 232, 118, 248, 178, 128, 66, 63, 56, 177, 141, 12, 160 },
                             PhoneNumber = "05321234567",
                             Position = "Head of Department",
                             Profession = "Software Developer",

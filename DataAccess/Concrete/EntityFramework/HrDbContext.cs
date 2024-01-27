@@ -13,13 +13,20 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-I0M0P7V;Database=HRWebDb;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-PE0VBS8;Database = HRWebDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            //Database = HRWebDb
+            //Data Source=DESKTOP-PE0VBS8;Database = HRWebDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
             //Data Source = toall.database.windows.net; Initial Catalog = HRWebDb; User ID = furkanhakan; Password = toall123.; Connect Timeout = 30; Encrypt = True; Trust Server Certificate = False; Application Intent = ReadWrite; Multi Subnet Failover = False
         }
         public DbSet<Employee> Employees { get; set; }
-
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
+        public DbSet<RequestApprovalStatus> RequestApprovalStatuses { get; set; }
+
+        public DbSet<VocationLeaveType> VocationLeaveTypes { get; set; }
+
+        public DbSet<VocationLeaveRequest> VocationLeaveRequests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

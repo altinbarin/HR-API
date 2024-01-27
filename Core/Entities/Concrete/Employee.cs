@@ -36,6 +36,7 @@ namespace Entities.Concrete
         public decimal Salary { get; set; }
         public byte[]? ImageData { get; set; }
 
+
         public int TitleId { get; set; }
         //public Title Title { get; set; }
 

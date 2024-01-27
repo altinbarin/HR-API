@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         public ActionResult ForgotPassword(string email)
         {
             var userExists = _authService.UserNotExists(email);
-            if (userExists.Success)
+            if (!userExists.Success)
             {
                 return BadRequest(userExists.Message);
             }

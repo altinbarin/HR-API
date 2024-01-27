@@ -14,11 +14,11 @@ namespace Core.DataAccess.EntityFramework
             using (TContext context = new TContext())
             {
                 //Referansı yakala
-                var addedEntity = context.Entry(entity);
+                //var addedEntity = context.Entry(entity);
 
-                addedEntity.State = EntityState.Added;
+                //addedEntity.State = EntityState.Added;
 
-                //context.Add(entity);
+                context.Add(entity);
 
                 context.SaveChanges();
             }
