@@ -10,6 +10,17 @@ namespace Business.Constants
     {
         public static string NotAValidTc = "Geçerli bir Tc kimlik numarası giriniz";
 
+
+        public static string SpendingRequestUpdated = "Harcama talebi başarıyla güncellendi";
+        public static string SpendingRequestNotUpdated = "Harcama talebi güncellenemedi!";
+        public static string SpendingRequestAdded = "Harcama talebi başarıyla eklendi";
+        public static string SpendingRequestNotAdded = "Harcama talebi eklenemedi!";
+        public static string TheAmountCanNotBeLessThanZero = "Harcama tutarı 0'dan küçük olamaz";
+        public static string NumberOnly = "Sadece sayı giriniz";
+        
+
+
+
         public static string NotAValidPhoneNumber = "Geçerli bir telefon numarası giriniz.";
 
         public static string NotAValidSalary = "Maaş değeri sıfırdan küçük olamaz";
@@ -34,6 +45,7 @@ namespace Business.Constants
         public static string VocationLeaveRequestUpdated = "İzin durumu başarıyla güncellendi";
         public static string VocationLeaveRequestNotUpdated = "İzin durumu güncellenemedi!";
         
+        public static string SpendingRequestNotFound = "Harcama talebi bulunamadı.";
 
         public static string MaintenanceTime = "Sistem bakımda";
 

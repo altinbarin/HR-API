@@ -28,6 +28,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<VocationLeaveRequestManager>().As<IVocationLeaveRequestService>().SingleInstance();
             builder.RegisterType<EfVocationRequestDal>().As<IVocationRequestDal>().SingleInstance();
 
+            builder.RegisterType<SpendingRequestManager>().As<ISpendingRequestService>().SingleInstance();
+            builder.RegisterType<EfSpendingRequestDal>().As<ISpendingRequestDal>().SingleInstance();
+
+
             builder.Register(context => new MapperConfiguration(cfg =>
             {               
                 cfg.AddProfile(new EmployeeProfile());
