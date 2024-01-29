@@ -32,6 +32,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfSpendingRequestDal>().As<ISpendingRequestDal>().SingleInstance();
 
 
+            builder.RegisterType<AdvanceRequestManager>().As<IAdvanceRequestService>().SingleInstance();
+            builder.RegisterType<EfAdvanceRequestDal>().As<IAdvanceRequestDal>().SingleInstance();
+
+
             builder.Register(context => new MapperConfiguration(cfg =>
             {               
                 cfg.AddProfile(new EmployeeProfile());

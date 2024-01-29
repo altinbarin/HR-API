@@ -65,7 +65,7 @@ namespace DataAccess.Concrete.EntityFramework
                 if (request != null)
                 {
                     request.RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == dto.RequestApprovalStatusName).Select(x => x.Id).FirstOrDefault();
-
+                    request.ResponseDate = DateTime.Now;
                     context.SaveChanges();
                     return new SuccessResult();
                 }

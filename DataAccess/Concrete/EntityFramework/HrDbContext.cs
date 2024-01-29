@@ -29,6 +29,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<VocationLeaveRequest> VocationLeaveRequests { get; set; }
 
         public DbSet<SpendingRequest> SpendingRequests { get; set; }
+
+        public DbSet<AdvanceRequest> AdvanceRequests { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

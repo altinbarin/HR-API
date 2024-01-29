@@ -17,7 +17,13 @@ namespace Business.Constants
         public static string SpendingRequestNotAdded = "Harcama talebi eklenemedi!";
         public static string TheAmountCanNotBeLessThanZero = "Harcama tutarı 0'dan küçük olamaz";
         public static string NumberOnly = "Sadece sayı giriniz";
+        public static string AdvanceRequestNotFound = "Avans talebi bulunamadı";
         
+        public static string AdvanceRequestUpdated = "Avans talebi başarıyla güncellendi";
+        public static string AdvanceRequestNotUpdated = "Avans talebi güncellenemedi!";
+        public static string AdvanceRequestAdded = "Avans talebi eklendi!";
+        public static string AdvanceRequestNotAdded = "Avans talebi eklenemedi!";
+        public static string PriceCanNotBeMoreThanSalarysThirdTimes = "Avans talebi maaşın 3 katından fazla olamaz";
 
 
 

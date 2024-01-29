@@ -13,6 +13,7 @@ namespace DataAccess.Mappings
     {
         public void Configure(EntityTypeBuilder<VocationLeaveRequest> builder)
         {
+
             builder.HasData(
                 new VocationLeaveRequest
                 {
