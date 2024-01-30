@@ -97,6 +97,10 @@ namespace Business.Concrete
         {
             var claims = _employeeService.GetClaims(employee);
             var accessToken = _tokenHelper.CreateToken(employee, claims);
+
+            //sadece ilk claim gönderiliyor. 
+            accessToken.Claim = claims[0].Name;
+
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
