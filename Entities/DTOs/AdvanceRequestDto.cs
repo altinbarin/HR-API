@@ -15,6 +15,7 @@ namespace Entities.DTOs
 
         public string RequestApprovalStatusName { get; set; }
 
+        public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeSurname { get; set; }
 

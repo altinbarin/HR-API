@@ -39,6 +39,7 @@ namespace DataAccess.Concrete.EntityFramework
                                         {
                                             Id = advanceRequest.Id,
                                             Currency = advanceRequest.Currency,
+                                            EmployeeId = advanceRequest.EmployeeId,
                                             EmployeeName = employees.FirstName,
                                             EmployeeSurname = employees.LastName,
                                             Description = advanceRequest.Description,

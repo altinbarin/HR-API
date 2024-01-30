@@ -13,6 +13,7 @@ namespace Entities.DTOs
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Currency { get; set; }
+        public int? EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeSurname { get; set; }
         public string RequestApprovalStatusName { get; set; }

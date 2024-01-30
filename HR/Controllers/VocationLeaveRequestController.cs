@@ -74,8 +74,21 @@ namespace HR.Controllers
                    return Ok(result.Message);
             }
             return BadRequest(result.Message);
+        }
 
+        [HttpGet("vocationrequestsbyemployee")]
+        public IActionResult GetVocationRequestsByEmployee()
+        {
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+            var employee = _employeeService.GetByMail(employeeMail);
+            var employeeId = employee.Id;
 
+            var result = _vocationLeaveRequestService.GetVocationRequestsByEmployeeId(employeeId);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
         }
     }
 }

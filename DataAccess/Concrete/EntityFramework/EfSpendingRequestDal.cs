@@ -43,6 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
                                              Name = spendingRequests.Name,
                                              Price = spendingRequests.Price,
                                              Currency = spendingRequests.Currency,
+                                             EmployeeId = spendingRequests.EmployeeId,
                                              EmployeeName = employees.FirstName,
                                              EmployeeSurname = employees.LastName,
                                              RequestApprovalStatusName = requestApprovalStatus.Name,

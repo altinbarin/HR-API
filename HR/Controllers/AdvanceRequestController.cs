@@ -62,5 +62,21 @@ namespace HR.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpGet("getadvancerequestformbyemployee")]
+        public IActionResult GetAdvanceRequestFormByEmployee()
+        {
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+
+            var employee = _employeeService.GetByMail(employeeMail);
+            var employeeId = employee.Id;
+
+            var result = _advanceRequestService.GetAllAdvanceRequestsByEmployeeId(employeeId);
+            if (result.Success)
+            {
+                   return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

@@ -39,7 +39,15 @@ namespace Business.Concrete
             return new ErrorDataResult<List<SpendingRequestDto>>(Messages.SpendingRequestNotFound);
         }
 
-        
+        public IDataResult<List<SpendingRequestDto>> GetSpendingRequestsByEmployeeId(int employeeId)
+        {
+            var result = _spendingRequestDal.GetAllSpendingRequests().FindAll(x => x.EmployeeId == employeeId);
+            if (result.Count > 0)
+            {
+                return new SuccessDataResult<List<SpendingRequestDto>>(result);
+            }
+            return new ErrorDataResult<List<SpendingRequestDto>>(Messages.SpendingRequestNotFound);
+        }
 
         public IResult UpdateApprovalStatusByName(SpendingRequestUpdateDto dto)
         {

@@ -64,6 +64,20 @@ namespace HR.Controllers
 
         }
 
+        [HttpGet("getspendingrequestformbyemployee")]
+        public IActionResult GetSpendingRequestByEmployee()
+        {
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+            var employee = _employeeService.GetByMail(employeeMail);
+            var employeeId = employee.Id;
+
+            var result = _spendingRequestService.GetSpendingRequestsByEmployeeId(employeeId);
+            if (result.Success)
+            {
+                   return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
 
 
     }

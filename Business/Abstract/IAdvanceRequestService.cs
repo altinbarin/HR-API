@@ -15,5 +15,7 @@ namespace Business.Abstract
         public IResult UpdateApprovalStatusByName(AdvanceRequestUpdateDto dto);
 
         public IResult AddAdvanceRequest(AdvanceRequestAddDto dto, int employeeId);
+
+        public IDataResult<List<AdvanceRequestDto>> GetAllAdvanceRequestsByEmployeeId(int employeeId);
     }
 }

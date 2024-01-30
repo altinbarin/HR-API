@@ -16,6 +16,7 @@ namespace Entities.DTOs
 
         public DateTime? ResponseDate { get; set; }
 
+        public int? EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeSurname { get; set; }
 

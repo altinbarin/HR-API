@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public Employee GetById(int employeeId)
         {
-            var employee =  _employeeDal.GetEmployee(h => h.Id == employeeId);
+            var employee = _employeeDal.GetEmployee(h => h.Id == employeeId);
             return employee;
         }
 
@@ -67,7 +67,8 @@ namespace Business.Concrete
 
         public List<OperationClaim> GetClaims(Employee employee)
         {
-            return _employeeDal.GetClaims(employee);
+            var claims = _employeeDal.GetClaims(employee);
+            return claims;
         }
 
         public void Add(Employee employee)

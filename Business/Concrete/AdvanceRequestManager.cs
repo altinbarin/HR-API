@@ -54,6 +54,16 @@ namespace Business.Concrete
             return new ErrorDataResult<List<AdvanceRequestDto>>(Messages.AdvanceRequestNotFound);
         }
 
+        public IDataResult<List<AdvanceRequestDto>> GetAllAdvanceRequestsByEmployeeId(int employeeId)
+        {
+            var result = _advanceRequestDal.GetAllAdvanceRequests().Where(x => x.EmployeeId == employeeId).ToList();
+            if (result.Count > 0)
+            {
+                return new SuccessDataResult<List<AdvanceRequestDto>>(result);
+            }
+            return new ErrorDataResult<List<AdvanceRequestDto>>(Messages.AdvanceRequestNotFound);
+        }
+
         public IResult UpdateApprovalStatusByName(AdvanceRequestUpdateDto dto)
         {
             var result = _advanceRequestDal.UpdateApprovalStatusByName(dto);

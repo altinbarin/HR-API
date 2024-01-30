@@ -16,7 +16,7 @@ namespace Business.Abstract
 
         public IResult AddSpendingRequest(SpendingRequestAddDto dto, int employeeId);
 
-
+        IDataResult<List<SpendingRequestDto>> GetSpendingRequestsByEmployeeId(int employeeId);
 
     }
 }

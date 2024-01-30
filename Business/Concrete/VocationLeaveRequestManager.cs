@@ -1,13 +1,16 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core;
 using Core.Aspects.Autofac.Validation;
+using Core.Entities;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +50,7 @@ namespace Business.Concrete
 
         }
 
+
         public IDataResult<List<VocationLeaveRequestAddDto>> GetVocationAddForm()
         {
             var result = _vocationRequestDal.GetVocationAddForm();
@@ -55,6 +59,19 @@ namespace Business.Concrete
                    return new SuccessDataResult<List<VocationLeaveRequestAddDto>>(result.Data);
             }
             return new ErrorDataResult<List<VocationLeaveRequestAddDto>>(Messages.VocationLeaveRequestNotFound);
+        }
+
+
+
+
+        public IDataResult<List<VocationLeaveRequestDto>> GetVocationRequestsByEmployeeId(int employeeId)
+        {
+            var result = _vocationRequestDal.GetAllVocationRequests().FindAll(x => x.EmployeeId == employeeId);
+            if (result.Count > 0)
+            {
+                return new SuccessDataResult<List<VocationLeaveRequestDto>>(result);
+            }
+            return new ErrorDataResult<List<VocationLeaveRequestDto>>(Messages.VocationLeaveRequestNotFound);
         }
 
         public IResult UpdateApprovalStatusByName(VocationLeaveRequestUpdateDto dto)

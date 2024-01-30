@@ -1,8 +1,10 @@
-﻿using Core.DataAccess.EntityFramework;
+﻿using Core;
+using Core.DataAccess.EntityFramework;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -51,6 +53,7 @@ namespace DataAccess.Concrete.EntityFramework
                                        select new VocationLeaveRequestDto
                                        {
                                            Id = vocationLeaveRequest.Id,
+                                           EmployeeId = employee.Id,
                                            EmployeeName = employee.FirstName,
                                            EmployeeSurname = employee.LastName,
                                            VocationLeaveTypeName = vocationLeaveType.Name,
@@ -63,6 +66,34 @@ namespace DataAccess.Concrete.EntityFramework
                 return vocationRequests.ToList();
             }
         }
+
+        //public List<VocationLeaveRequestDto> GetVocationRequestsByEmployee(int employeeId)
+        //{
+        //    using (HrDbContext context = new HrDbContext())
+        //    {
+        //        var vocationRequests = from vocationLeaveRequest in context.VocationLeaveRequests
+        //                               join vocationLeaveType in context.VocationLeaveTypes on vocationLeaveRequest.VocationLeaveTypeId equals vocationLeaveType.Id
+        //                               join requestApprovalStatus in context.RequestApprovalStatuses on vocationLeaveRequest.RequestApprovalStatusId equals requestApprovalStatus.Id
+        //                               join employee in context.Employees on vocationLeaveRequest.EmployeeId equals employee.Id
+        //                               select new VocationLeaveRequestDto
+        //                               {
+        //                                   Id = vocationLeaveRequest.Id,
+        //                                   EmployeeId = employeeId,
+        //                                   EmployeeName = employee.FirstName,
+        //                                   EmployeeSurname = employee.LastName,
+        //                                   VocationLeaveTypeName = vocationLeaveType.Name,
+        //                                   RequestApprovalStatusName = requestApprovalStatus.Name,
+        //                                   StartingDate = vocationLeaveRequest.StartingDate,
+        //                                   EndingDate = vocationLeaveRequest.EndingDate,
+        //                                   ResponseDate = vocationLeaveRequest.ResponseDate
+        //                               };
+
+
+        //        var employesVocationRequests = vocationRequests.Where(x => x.EmployeeId == employeeId);
+        //        return employesVocationRequests.ToList();
+        //    }
+        //}
+
 
         public IDataResult<List<VocationLeaveRequestAddDto>> GetVocationAddForm()
         {
@@ -80,6 +111,8 @@ namespace DataAccess.Concrete.EntityFramework
                 return new SuccessDataResult<List<VocationLeaveRequestAddDto>>(resultList);
             }
         }
+
+       
 
         public IResult UpdateApprovalStatusByName(VocationLeaveRequestUpdateDto dto)
         {
