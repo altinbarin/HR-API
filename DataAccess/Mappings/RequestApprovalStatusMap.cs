@@ -15,22 +15,22 @@ namespace DataAccess.Mappings
                                new RequestApprovalStatus
                                {
                                    Id = 1,
-                                   Name = "Pending"
+                                   Name = "Bekliyor"
                                },
                                               new RequestApprovalStatus
                                               {
                                                   Id = 2,
-                                                  Name = "Approved"
+                                                  Name = "Onay"
                                               },
                                                              new RequestApprovalStatus
                                                              {
                                                                  Id = 3,
-                                                                 Name = "Rejected"
+                                                                 Name = "Ret"
                                                              },
                                                                         new RequestApprovalStatus
                                                                         {
                                                                             Id = 4,
-                                                                            Name = "Canceled"
+                                                                            Name = "İptal"
                                                                         }
                                                                             );
         }

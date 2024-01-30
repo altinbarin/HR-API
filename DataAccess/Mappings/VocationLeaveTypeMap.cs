@@ -18,56 +18,56 @@ namespace DataAccess.Mappings
                  {
                      //Yıllık izin
                      Id = 1,
-                     Name = "Annual Leave",
+                     Name = "Yıllık İzin",
                      Day = 14
                  },
                  new VocationLeaveType
                  {
                      //Hastalık izni
                      Id = 2,
-                     Name = "Sick Leave",
+                     Name = "Hastalık İzni",
                      Day = 5
                  },
                  new VocationLeaveType
                  {
                      //evlilik izni
                      Id = 3,
-                     Name = "Marriage Leave",
+                     Name = "Evlilik İzni",
                      Day = 3
                  },
                  new VocationLeaveType
                  {
                      //doğum izni
                      Id = 4,
-                     Name = "Maternity Leave",
+                     Name = "Doğum İzni",
                      Day = 120
                  },
                  new VocationLeaveType
                  {
                      //babalık izni
                      Id = 5,
-                     Name = "Paternity Leave",
+                     Name = "Babalık İzni",
                      Day = 5
                  },
                  new VocationLeaveType
                  {
                      //ölüm izni
                      Id = 6,
-                     Name = "Bereavement Leave",
+                     Name = "Ölüm İzni",
                      Day = 3
                  },
                   new VocationLeaveType
                   {
                       //ücretsiz izin
                       Id = 7,
-                      Name = "Unpaid Leave",
+                      Name = "Ücretsiz İzin",
                       Day = 1
                   },
                   new VocationLeaveType
                   {
                       //diğer izin
                       Id = 8,
-                      Name = "Other",
+                      Name = "Diğer",
                       Day = 1
                   }
                     );
