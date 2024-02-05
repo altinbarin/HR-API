@@ -18,5 +18,7 @@ namespace DataAccess.Abstract
 
         Employee GetEmployee(Func<Employee, bool> filter);
 
+        void AddUserOperationClaim(UserOperationClaim userOperationClaim);
+
     }
 }

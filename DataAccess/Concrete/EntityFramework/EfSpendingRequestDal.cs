@@ -18,8 +18,9 @@ namespace DataAccess.Concrete.EntityFramework
                     Name = dto.Name,
                     Price = dto.Price,
                     Currency = dto.Currency,
-                    RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == "Pending").Select(x => x.Id).FirstOrDefault(),
-                    Folder = dto.Folder
+                    RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == "Bekliyor").Select(x => x.Id).FirstOrDefault(),
+                    Folder = dto.Folder,
+                    FolderName = dto.FolderName
                 };
 
                 var result = context.Add(spendingRequest);
@@ -49,7 +50,8 @@ namespace DataAccess.Concrete.EntityFramework
                                              RequestApprovalStatusName = requestApprovalStatus.Name,
                                              RequestDate = spendingRequests.RequestDate,
                                              ResponseDate = spendingRequests.ResponseDate,
-                                             Folder = spendingRequests.Folder
+                                             Folder = spendingRequests.Folder,
+                                             FolderName = spendingRequests.FolderName
                                          };
 
                 return spendingRequestDto.ToList();

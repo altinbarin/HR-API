@@ -13,5 +13,7 @@ namespace Entities.DTOs
         public decimal Price { get; set; }
         public string Currency { get; set; }
         public byte[]? Folder { get; set; }
+        public string? FolderName { get; set; }
+
     }
 }

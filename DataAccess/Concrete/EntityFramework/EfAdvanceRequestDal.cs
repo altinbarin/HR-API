@@ -18,7 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
                     Description = dto.Description,
                     Price = dto.Price,
                     Currency = dto.Currency,
-                    RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == "Pending").Select(x => x.Id).FirstOrDefault(),
+                    RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == "Bekliyor").Select(x => x.Id).FirstOrDefault(),
                     Type = dto.Type,
                 };
 
@@ -45,7 +45,8 @@ namespace DataAccess.Concrete.EntityFramework
                                             Description = advanceRequest.Description,
                                             Price = advanceRequest.Price,
                                             RequestApprovalStatusName = requestApprovalStatus.Name,
-                                            RequestDate = advanceRequest.RequestDate
+                                            RequestDate = advanceRequest.RequestDate,
+                                            Type = advanceRequest.Type,
                                         };
 
                 return advanceRequestDto.ToList();

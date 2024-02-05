@@ -20,5 +20,7 @@ namespace Entities.DTOs
         public DateTime? RequestDate { get; set; }
         public DateTime? ResponseDate { get; set; }
         public byte[]? Folder { get; set; }
+        public string? FolderName { get; set; }
+
     }
 }

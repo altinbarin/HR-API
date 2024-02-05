@@ -25,6 +25,12 @@ namespace DataAccess.Mappings
                    Id = 2,
                    EmployeeId = 2,
                    OperationClaimId = 2
+               },
+               new UserOperationClaim
+               {
+                   Id=3,
+                   EmployeeId=3,
+                   OperationClaimId=3
                });
         }
     }

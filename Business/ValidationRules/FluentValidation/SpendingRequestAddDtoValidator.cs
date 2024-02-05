@@ -15,8 +15,8 @@ namespace Business.ValidationRules.FluentValidation
         {
 
             RuleFor(s => s.Price).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).GreaterThan(0).WithMessage(Messages.TheAmountCanNotBeLessThanZero).Must(IsDigit).WithMessage(Messages.NumberOnly) ;
-            RuleFor(s => s.Currency).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsNotDigit).WithMessage(Messages.LetterOnly);
             RuleFor(s => s.Name).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
+            //RuleFor(s => s.Currency).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsNotDigit).WithMessage(Messages.LetterOnly);
             //RuleFor(s => s.Folder).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
             
         }

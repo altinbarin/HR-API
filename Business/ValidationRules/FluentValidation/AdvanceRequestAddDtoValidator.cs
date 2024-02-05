@@ -14,7 +14,7 @@ namespace Business.ValidationRules.FluentValidation
         public AdvanceRequestAddDtoValidator()
         {
             RuleFor(a=>a.Price).Must(IsDigit).WithMessage(Messages.NumberOnly).NotEmpty();
-            RuleFor(a => a.Currency).Must(IsNotDigit).WithMessage(Messages.LetterOnly).NotEmpty();
+            //RuleFor(a => a.Currency).Must(IsNotDigit).WithMessage(Messages.LetterOnly).NotEmpty();
             RuleFor(a => a.Description).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
             
         }

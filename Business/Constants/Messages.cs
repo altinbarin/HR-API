@@ -9,6 +9,10 @@ namespace Business.Constants
     public static class Messages
     {
         public static string NotAValidTc = "Geçerli bir Tc kimlik numarası giriniz";
+        public static string MaxValue100 = "Maksimum 100 karakter olmalıdır";
+        public static string MaxValue250 = "Maksimum 250 karakter olmalıdır";
+        public static string Value16 = "16 karakter olmalıdır";
+        public static string Value10 = "10 karakter olmalıdır";
 
 
         public static string SpendingRequestUpdated = "Harcama talebi başarıyla güncellendi";
@@ -18,6 +22,10 @@ namespace Business.Constants
         public static string TheAmountCanNotBeLessThanZero = "Harcama tutarı 0'dan küçük olamaz";
         public static string NumberOnly = "Sadece sayı giriniz";
         public static string AdvanceRequestNotFound = "Avans talebi bulunamadı";
+        public static string FirmCanNotAdded = "Firma eklenirken bir hata oluştu!";
+        public static string FirmAdded = "Firma eklendi";
+
+
         
         public static string AdvanceRequestUpdated = "Avans talebi başarıyla güncellendi";
         public static string AdvanceRequestNotUpdated = "Avans talebi güncellenemedi!";

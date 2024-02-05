@@ -48,6 +48,14 @@ namespace Business.Concrete
             if (isEmailSent)
             {
                 _employeeService.Add(employee);
+               
+                var userOperationClaim = new UserOperationClaim
+                {
+                    EmployeeId = employee.Id,
+                    OperationClaimId = 2
+                };
+                _employeeDal.AddUserOperationClaim(userOperationClaim);
+               
 
                 return new SuccessDataResult<Employee>(employee, Messages.UserRegistered);
             }

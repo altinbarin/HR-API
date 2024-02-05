@@ -2,7 +2,6 @@
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Text;
 
 namespace DataAccess.Mappings
 {
@@ -105,12 +104,36 @@ namespace DataAccess.Mappings
 
 
 
+            var mehmet = new Employee
+            {
+                Id = 3,
+                Address = "Cevizlibağ",
+                EmailForRegister = "mehmetcatmakasli@gmail.com",
+                City = "İstanbul",
+                Company = "Bilge Adam",
+                Department = "IT",
+                FirstName = "Mehmet",
+                LastName = "Çatmakaşlı",
+                PhoneNumber = "05321234567",
+                Salary = 15000,
+                Position = "Junior Developer",
+                DateOfBirth = new DateTime(1995, 11, 11),
+                TurkishIdentificationNumber = "14846942042",
+                DateOfEmployment = new DateTime(2020, 01, 01),
+                Status = true,
+                TitleId = 2,
+                BirthLocation = "İstanbul",
+                Profession = "Software Developer",                
+            };
 
-
+            HashingHelper.CreatePasswordHash("123", out byte[] passwordHash2, out byte[] passwordSalt2);
+            mehmet.PasswordHash = passwordHash2;
+            mehmet.PasswordSalt = passwordSalt2;
 
             builder.HasData(
                 hakan,
-                furkan
+                furkan,
+                mehmet
                 );
         }
     }

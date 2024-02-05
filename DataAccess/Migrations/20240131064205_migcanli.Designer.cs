@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(HrDbContext))]
-    partial class HrDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240131064205_migcanli")]
+    partial class migcanli
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,131 +71,24 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Currency = "₺",
+                            Currency = "TL",
                             Description = "Tatil",
                             EmployeeId = 2,
                             Price = 1000m,
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 190, DateTimeKind.Local).AddTicks(5210),
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 221, DateTimeKind.Local).AddTicks(6310),
                             Type = "Tatil"
                         },
                         new
                         {
                             Id = 2,
-                            Currency = "₺",
+                            Currency = "TL",
                             Description = "2 maaş avans talebi",
                             EmployeeId = 2,
                             Price = 1000m,
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 190, DateTimeKind.Local).AddTicks(5221),
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 221, DateTimeKind.Local).AddTicks(6330),
                             Type = "Tatil"
-                        });
-                });
-
-            modelBuilder.Entity("Core.Entities.Concrete.Firm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<DateTime>("ConctractEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ConctractStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOfFoundation")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("EmployeeCount")
-                        .HasColumnType("int");
-
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<byte[]>("Logo")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("MersisNo")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("VergiDairesi")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("VergiNo")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Firms");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Kadıköy",
-                            ConctractEndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConctractStartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfFoundation = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "bilgeadam@mail.com",
-                            EmployeeCount = 100,
-                            IsActive = true,
-                            MersisNo = "1234567890123456",
-                            Name = "Bilge Adam",
-                            PhoneNumber = "05321234567",
-                            Title = "Bilge Adam Bilişim Grubu",
-                            VergiDairesi = "Kadıköy",
-                            VergiNo = "1234567890"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Etiler",
-                            ConctractEndDate = new DateTime(2032, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConctractStartDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfFoundation = new DateTime(1980, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "kocholding@mail.com",
-                            EmployeeCount = 50000,
-                            IsActive = true,
-                            MersisNo = "1234567890123456",
-                            Name = "Koç Holding",
-                            PhoneNumber = "05321234597",
-                            Title = "Koç Holding",
-                            VergiDairesi = "Etiler",
-                            VergiNo = "1234567891"
                         });
                 });
 
@@ -222,11 +118,6 @@ namespace DataAccess.Migrations
                         {
                             Id = 2,
                             Name = "user"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "manager"
                         });
                 });
 
@@ -289,9 +180,6 @@ namespace DataAccess.Migrations
                     b.Property<byte[]>("Folder")
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<string>("FolderName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -322,7 +210,7 @@ namespace DataAccess.Migrations
                             Name = "Yakıt Gideri",
                             Price = 500m,
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 191, DateTimeKind.Local).AddTicks(4749)
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 222, DateTimeKind.Local).AddTicks(4238)
                         },
                         new
                         {
@@ -332,7 +220,7 @@ namespace DataAccess.Migrations
                             Name = "Yemek Gideri",
                             Price = 200m,
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 191, DateTimeKind.Local).AddTicks(4755)
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 222, DateTimeKind.Local).AddTicks(4246)
                         });
                 });
 
@@ -366,12 +254,6 @@ namespace DataAccess.Migrations
                             Id = 2,
                             EmployeeId = 2,
                             OperationClaimId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            EmployeeId = 3,
-                            OperationClaimId = 3
                         });
                 });
 
@@ -415,7 +297,7 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             EndingDate = new DateTime(2021, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 192, DateTimeKind.Local).AddTicks(2663),
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 223, DateTimeKind.Local).AddTicks(3481),
                             StartingDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VocationLeaveTypeId = 1
                         },
@@ -425,7 +307,7 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             EndingDate = new DateTime(2022, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 192, DateTimeKind.Local).AddTicks(2668),
+                            RequestDate = new DateTime(2024, 1, 31, 9, 42, 5, 223, DateTimeKind.Local).AddTicks(3490),
                             StartingDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             VocationLeaveTypeId = 2
                         });
@@ -623,8 +505,8 @@ namespace DataAccess.Migrations
                             EmailForRegister = "hakantoraman@gmail.com",
                             FirstName = "Hakan",
                             LastName = "Toraman",
-                            PasswordHash = new byte[] { 109, 41, 231, 237, 6, 240, 71, 252, 36, 32, 85, 128, 163, 81, 195, 96, 57, 202, 248, 177, 165, 106, 37, 23, 135, 171, 19, 82, 12, 13, 161, 179, 46, 110, 59, 171, 163, 9, 83, 250, 5, 32, 199, 227, 2, 171, 220, 36, 138, 90, 118, 101, 242, 63, 233, 109, 168, 219, 27, 152, 88, 35, 75, 131 },
-                            PasswordSalt = new byte[] { 22, 134, 247, 213, 23, 95, 193, 162, 201, 82, 47, 24, 49, 106, 127, 92, 240, 34, 130, 111, 170, 74, 225, 213, 231, 199, 75, 1, 5, 132, 184, 135, 189, 44, 112, 29, 198, 155, 197, 166, 58, 189, 241, 53, 246, 241, 226, 151, 109, 25, 234, 132, 114, 83, 245, 197, 80, 63, 41, 66, 223, 16, 118, 151, 104, 206, 239, 182, 198, 132, 184, 131, 12, 43, 117, 228, 204, 7, 4, 156, 153, 251, 221, 114, 136, 132, 197, 240, 132, 194, 26, 50, 175, 76, 153, 126, 171, 226, 160, 83, 245, 124, 82, 224, 183, 60, 13, 139, 107, 147, 158, 177, 85, 87, 224, 151, 215, 205, 181, 115, 211, 244, 172, 68, 72, 190, 29, 139 },
+                            PasswordHash = new byte[] { 213, 96, 188, 217, 160, 67, 67, 180, 3, 212, 91, 127, 137, 37, 28, 121, 73, 223, 48, 4, 21, 36, 102, 239, 55, 196, 240, 231, 97, 96, 114, 229, 254, 255, 145, 242, 0, 186, 121, 81, 98, 138, 163, 254, 174, 114, 135, 176, 6, 19, 32, 137, 226, 192, 20, 106, 100, 254, 138, 57, 244, 67, 146, 95 },
+                            PasswordSalt = new byte[] { 141, 177, 118, 115, 17, 53, 108, 33, 69, 212, 237, 180, 6, 125, 37, 116, 180, 192, 52, 151, 115, 93, 40, 16, 1, 174, 235, 75, 44, 40, 18, 130, 50, 45, 213, 251, 144, 51, 151, 17, 32, 37, 154, 94, 63, 148, 30, 56, 213, 7, 112, 204, 236, 197, 213, 176, 197, 212, 44, 152, 12, 90, 136, 139, 52, 232, 194, 27, 30, 221, 58, 175, 30, 106, 12, 247, 143, 108, 0, 63, 168, 102, 113, 89, 210, 6, 159, 151, 192, 228, 153, 37, 48, 208, 112, 114, 152, 62, 37, 120, 224, 105, 160, 80, 145, 94, 115, 234, 223, 128, 178, 218, 187, 116, 2, 38, 64, 10, 6, 24, 100, 21, 28, 143, 245, 60, 80, 130 },
                             PhoneNumber = "05321234567",
                             Position = "Junior Developer",
                             Profession = "Software Developer",
@@ -647,8 +529,8 @@ namespace DataAccess.Migrations
                             EmailForRegister = "furkanaltinbarin@gmail.com",
                             FirstName = "Furkan",
                             LastName = "Altınbarın",
-                            PasswordHash = new byte[] { 4, 84, 244, 112, 207, 247, 178, 129, 236, 44, 204, 204, 178, 0, 110, 211, 48, 87, 98, 208, 222, 254, 84, 13, 29, 21, 150, 234, 61, 11, 237, 212, 30, 98, 170, 121, 3, 132, 238, 120, 25, 237, 177, 89, 87, 88, 158, 43, 214, 72, 205, 208, 242, 51, 111, 30, 52, 98, 232, 94, 159, 101, 104, 249 },
-                            PasswordSalt = new byte[] { 111, 7, 179, 124, 52, 58, 186, 80, 46, 6, 120, 160, 127, 52, 109, 98, 190, 192, 49, 64, 25, 130, 213, 99, 17, 111, 246, 116, 25, 204, 215, 40, 236, 162, 205, 150, 90, 103, 90, 185, 186, 121, 23, 55, 23, 65, 194, 32, 3, 177, 178, 40, 169, 214, 44, 129, 92, 125, 161, 166, 51, 20, 29, 10, 11, 47, 234, 129, 105, 159, 120, 68, 44, 174, 241, 181, 126, 69, 44, 96, 139, 228, 160, 4, 220, 132, 71, 110, 132, 56, 98, 20, 120, 254, 131, 230, 32, 98, 203, 187, 186, 22, 160, 140, 3, 240, 186, 123, 127, 173, 51, 165, 85, 22, 124, 127, 30, 105, 238, 233, 206, 65, 230, 196, 225, 190, 213, 38 },
+                            PasswordHash = new byte[] { 5, 176, 101, 246, 98, 86, 223, 124, 53, 120, 200, 7, 58, 223, 188, 50, 95, 152, 74, 240, 222, 111, 102, 26, 149, 42, 34, 120, 236, 230, 3, 200, 181, 29, 143, 7, 16, 31, 39, 218, 135, 253, 97, 115, 180, 241, 71, 185, 186, 77, 255, 25, 246, 178, 166, 54, 163, 133, 109, 80, 131, 146, 142, 73 },
+                            PasswordSalt = new byte[] { 205, 108, 60, 180, 26, 31, 78, 32, 182, 70, 149, 72, 51, 117, 88, 133, 133, 228, 91, 84, 130, 162, 59, 128, 198, 94, 225, 11, 185, 63, 220, 109, 224, 90, 114, 163, 146, 30, 232, 207, 243, 181, 204, 212, 232, 38, 14, 92, 174, 31, 33, 122, 205, 115, 43, 195, 24, 212, 41, 183, 111, 174, 108, 188, 36, 76, 115, 67, 17, 157, 177, 192, 3, 170, 207, 49, 245, 219, 190, 31, 68, 133, 91, 118, 105, 86, 193, 196, 148, 165, 199, 80, 243, 170, 201, 42, 28, 114, 64, 123, 215, 223, 57, 205, 155, 171, 76, 193, 190, 114, 97, 160, 67, 106, 193, 146, 208, 171, 125, 28, 148, 207, 115, 108, 91, 111, 158, 245 },
                             PhoneNumber = "05321234567",
                             Position = "Head of Department",
                             Profession = "Software Developer",
@@ -656,30 +538,6 @@ namespace DataAccess.Migrations
                             Status = true,
                             TitleId = 1,
                             TurkishIdentificationNumber = "12345678910"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Cevizlibağ",
-                            BirthLocation = "İstanbul",
-                            City = "İstanbul",
-                            Company = "Bilge Adam",
-                            DateOfBirth = new DateTime(1995, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfEmployment = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Department = "IT",
-                            Email = "mehmet.catmakasli@bilgeadamboost.com",
-                            EmailForRegister = "mehmetcatmakasli@gmail.com",
-                            FirstName = "Mehmet",
-                            LastName = "Çatmakaşlı",
-                            PasswordHash = new byte[] { 184, 104, 204, 141, 152, 13, 201, 66, 230, 79, 244, 180, 22, 235, 136, 209, 115, 215, 212, 38, 198, 87, 43, 87, 132, 162, 167, 238, 191, 74, 68, 4, 16, 98, 135, 255, 221, 39, 234, 26, 244, 183, 70, 74, 193, 139, 250, 237, 189, 36, 177, 106, 37, 38, 122, 97, 68, 38, 210, 180, 45, 96, 9, 100 },
-                            PasswordSalt = new byte[] { 217, 90, 220, 107, 178, 218, 76, 159, 32, 190, 47, 36, 223, 197, 94, 6, 116, 162, 76, 128, 39, 72, 58, 64, 255, 18, 80, 241, 28, 94, 68, 15, 30, 217, 237, 151, 222, 157, 31, 213, 54, 194, 20, 92, 239, 123, 234, 0, 35, 25, 194, 174, 216, 64, 220, 15, 206, 82, 171, 141, 45, 135, 85, 44, 49, 163, 245, 124, 111, 92, 137, 164, 162, 126, 234, 246, 63, 145, 200, 46, 24, 54, 117, 118, 8, 124, 197, 86, 51, 250, 127, 178, 150, 40, 218, 125, 67, 233, 102, 1, 95, 55, 8, 239, 198, 126, 108, 176, 178, 104, 249, 143, 168, 16, 235, 90, 171, 141, 181, 74, 193, 39, 42, 227, 32, 171, 21, 138 },
-                            PhoneNumber = "05321234567",
-                            Position = "Junior Developer",
-                            Profession = "Software Developer",
-                            Salary = 15000m,
-                            Status = true,
-                            TitleId = 2,
-                            TurkishIdentificationNumber = "14846942042"
                         });
                 });
 

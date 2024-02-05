@@ -27,7 +27,7 @@ namespace Business.ValidationRules.FluentValidation
 
             RuleFor(fn => fn.SecondLastname).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(s => s.Salary).NotNull().GreaterThan(0).WithMessage(Messages.NotAValidSalary);
+            RuleFor(s => s.Salary).NotEmpty().GreaterThan(0).WithMessage(Messages.NotAValidSalary);
 
             RuleFor(p => p.Profession).NotEmpty().Must(IsLetter).WithMessage(Messages.LetterOnly);
 
@@ -58,6 +58,10 @@ namespace Business.ValidationRules.FluentValidation
 
         public bool IsLetter(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return true;
+            }
             if (!name.All(char.IsDigit))
             {
                 return true;

@@ -27,7 +27,7 @@ namespace DataAccess.Mappings
                        EmployeeId = 2,
                        RequestApprovalStatusId = 1,
                        Price = 1000,
-                       Currency = "TL",
+                       Currency = "₺",
                        Description = "Tatil",
                        Type = "Tatil"
                    },
@@ -37,7 +37,7 @@ namespace DataAccess.Mappings
                         EmployeeId = 2,
                         RequestApprovalStatusId = 2,
                         Price = 1000,
-                        Currency = "TL",
+                        Currency = "₺",
                         Description = "2 maaş avans talebi",
                         Type = "Tatil"
                     });

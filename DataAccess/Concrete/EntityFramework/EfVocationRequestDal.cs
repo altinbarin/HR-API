@@ -27,8 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
                                           VocationLeaveTypeId = vocationLeaveTypeId,
                                           RequestApprovalStatusId = requestApprovalStatus.Id,
                                           StartingDate = dto.StartingDate,
-                                          EndingDate = dto.StartingDate.AddDays(vocationLeaveType.Day),
-
+                                          EndingDate = dto.StartingDate.AddDays(dto.Day),
                                       };
 
                 var request = vocationRequest.FirstOrDefault();

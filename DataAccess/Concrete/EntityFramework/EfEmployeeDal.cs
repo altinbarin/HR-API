@@ -82,5 +82,14 @@ namespace DataAccess.Concrete.EntityFramework
                 return employee;
             }
         }
+
+        public void AddUserOperationClaim(UserOperationClaim userOperationClaim)
+        {
+            using (var context = new HrDbContext())
+            { 
+                context.UserOperationClaims.Add(userOperationClaim);
+                context.SaveChanges();
+            }
+        }
     }
 }

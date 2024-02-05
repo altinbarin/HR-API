@@ -36,10 +36,14 @@ namespace HR.Controllers
             return Ok(employees);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetSummary(int id)
+
+        [HttpGet("summary")]
+        public IActionResult GetSummary()
         {
-            var employeeSummary = _employeeService.GetSummary(id);
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+            var employee = _employeeService.GetByMail(employeeMail);
+
+            var employeeSummary = _employeeService.GetSummary(employee.Id);
             return Ok(employeeSummary);
         }
 
@@ -65,10 +69,5 @@ namespace HR.Controllers
             }
             return BadRequest(result);
         }
-
-        
-
-
-
     }
 }

@@ -17,6 +17,7 @@ namespace Core.Entities.Concrete
         public DateTime? RequestDate { get; set; } = DateTime.Now;
         public DateTime? ResponseDate { get; set; }
         public byte[]? Folder { get; set; }
+        public string? FolderName { get; set; }
 
     }
 }

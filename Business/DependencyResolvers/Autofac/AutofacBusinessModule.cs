@@ -35,6 +35,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<AdvanceRequestManager>().As<IAdvanceRequestService>().SingleInstance();
             builder.RegisterType<EfAdvanceRequestDal>().As<IAdvanceRequestDal>().SingleInstance();
 
+            builder.RegisterType<FirmManager>().As<IFirmService>().SingleInstance();
+            builder.RegisterType<EfFirmDal>().As<IFirmDal>().SingleInstance();
+
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {               
