@@ -13,6 +13,9 @@ namespace Entities.DTOs
 
         public DateTime? RequestDate { get; set; }
 
+        public DateTime? ResponseDate { get; set; }
+
+
         public string RequestApprovalStatusName { get; set; }
 
         public int EmployeeId { get; set; }

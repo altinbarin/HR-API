@@ -15,7 +15,7 @@ namespace HR.Controllers
             _requestApprovalStatusService = requestApprovalStatusService;
         }
 
-        [HttpGet]
+        [HttpGet("getstatus")]
         public IActionResult GetRequestApprovalStatus()
         {
             var result = _requestApprovalStatusService.GetAll();

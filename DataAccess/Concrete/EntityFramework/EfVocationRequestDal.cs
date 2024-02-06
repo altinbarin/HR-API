@@ -59,7 +59,8 @@ namespace DataAccess.Concrete.EntityFramework
                                            RequestApprovalStatusName = requestApprovalStatus.Name,
                                            StartingDate = vocationLeaveRequest.StartingDate,
                                            EndingDate = vocationLeaveRequest.EndingDate,
-                                           ResponseDate = vocationLeaveRequest.ResponseDate
+                                           ResponseDate = vocationLeaveRequest.ResponseDate,
+                                           RequestDate = vocationLeaveRequest.RequestDate
                                        };
 
                 return vocationRequests.ToList();
