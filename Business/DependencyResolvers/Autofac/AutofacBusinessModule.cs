@@ -38,6 +38,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<FirmManager>().As<IFirmService>().SingleInstance();
             builder.RegisterType<EfFirmDal>().As<IFirmDal>().SingleInstance();
 
+            builder.RegisterType<RequestApprovalStatusManager>().As<IRequestApprovalStatusService>().SingleInstance();
+            builder.RegisterType<EfRequestApprovalStatusDal>().As<IRequestApprovalStatusDal>().SingleInstance();
+            
+
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {               
