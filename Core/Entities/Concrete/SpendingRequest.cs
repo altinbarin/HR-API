@@ -18,6 +18,8 @@ namespace Core.Entities.Concrete
         public DateTime? ResponseDate { get; set; }
         public byte[]? Folder { get; set; }
         public string? FolderName { get; set; }
+        public bool Status { get; set; } = true;
+
 
     }
 }

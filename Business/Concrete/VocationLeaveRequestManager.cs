@@ -66,6 +66,7 @@ namespace Business.Concrete
             return new ErrorDataResult<List<VocationLeaveRequestDto>>(Messages.VocationLeaveRequestNotFound);
         }
 
+
         public IResult UpdateApprovalStatusByName(VocationLeaveRequestUpdateDto dto)
         {
             var result = _vocationRequestDal.UpdateApprovalStatusByName(dto);

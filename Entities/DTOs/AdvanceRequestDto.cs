@@ -30,5 +30,8 @@ namespace Entities.DTOs
 
         public string Type { get; set; }
 
+        public bool Status { get; set; }
+
+
     }
 }

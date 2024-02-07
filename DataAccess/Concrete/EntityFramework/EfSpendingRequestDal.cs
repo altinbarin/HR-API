@@ -51,7 +51,8 @@ namespace DataAccess.Concrete.EntityFramework
                                              RequestDate = spendingRequests.RequestDate,
                                              ResponseDate = spendingRequests.ResponseDate,
                                              Folder = spendingRequests.Folder,
-                                             FolderName = spendingRequests.FolderName
+                                             FolderName = spendingRequests.FolderName,
+                                             Status = spendingRequests.Status
                                          };
 
                 return spendingRequestDto.ToList();
@@ -69,6 +70,7 @@ namespace DataAccess.Concrete.EntityFramework
                 {
                     request.RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == dto.RequestApprovalStatusName).Select(x => x.Id).FirstOrDefault();
                     request.ResponseDate = DateTime.Now;
+                    request.Status = false;
                     context.SaveChanges();
                     return new SuccessResult();
                 }

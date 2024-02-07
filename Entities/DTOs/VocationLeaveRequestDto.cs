@@ -25,5 +25,8 @@ namespace Entities.DTOs
         public string VocationLeaveTypeName { get; set; }
 
         public string RequestApprovalStatusName { get; set; }
+
+        public bool Status { get; set; }
+
     }
 }

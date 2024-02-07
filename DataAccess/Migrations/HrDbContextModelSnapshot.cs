@@ -55,6 +55,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("ResponseDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -73,7 +76,8 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             Price = 1000m,
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 190, DateTimeKind.Local).AddTicks(5210),
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 284, DateTimeKind.Local).AddTicks(4501),
+                            Status = true,
                             Type = "Tatil"
                         },
                         new
@@ -84,7 +88,8 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             Price = 1000m,
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 190, DateTimeKind.Local).AddTicks(5221),
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 284, DateTimeKind.Local).AddTicks(4515),
+                            Status = true,
                             Type = "Tatil"
                         });
                 });
@@ -309,6 +314,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("ResponseDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("SpendingRequests");
@@ -322,7 +330,8 @@ namespace DataAccess.Migrations
                             Name = "Yakıt Gideri",
                             Price = 500m,
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 191, DateTimeKind.Local).AddTicks(4749)
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 285, DateTimeKind.Local).AddTicks(3452),
+                            Status = true
                         },
                         new
                         {
@@ -332,7 +341,8 @@ namespace DataAccess.Migrations
                             Name = "Yemek Gideri",
                             Price = 200m,
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 191, DateTimeKind.Local).AddTicks(4755)
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 285, DateTimeKind.Local).AddTicks(3458),
+                            Status = true
                         });
                 });
 
@@ -401,6 +411,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<int>("VocationLeaveTypeId")
                         .HasColumnType("int");
 
@@ -415,8 +428,9 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             EndingDate = new DateTime(2021, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RequestApprovalStatusId = 1,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 192, DateTimeKind.Local).AddTicks(2663),
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 286, DateTimeKind.Local).AddTicks(924),
                             StartingDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true,
                             VocationLeaveTypeId = 1
                         },
                         new
@@ -425,8 +439,9 @@ namespace DataAccess.Migrations
                             EmployeeId = 2,
                             EndingDate = new DateTime(2022, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RequestApprovalStatusId = 2,
-                            RequestDate = new DateTime(2024, 2, 5, 0, 11, 16, 192, DateTimeKind.Local).AddTicks(2668),
+                            RequestDate = new DateTime(2024, 2, 7, 2, 13, 5, 286, DateTimeKind.Local).AddTicks(929),
                             StartingDate = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = true,
                             VocationLeaveTypeId = 2
                         });
                 });
@@ -623,8 +638,8 @@ namespace DataAccess.Migrations
                             EmailForRegister = "hakantoraman@gmail.com",
                             FirstName = "Hakan",
                             LastName = "Toraman",
-                            PasswordHash = new byte[] { 109, 41, 231, 237, 6, 240, 71, 252, 36, 32, 85, 128, 163, 81, 195, 96, 57, 202, 248, 177, 165, 106, 37, 23, 135, 171, 19, 82, 12, 13, 161, 179, 46, 110, 59, 171, 163, 9, 83, 250, 5, 32, 199, 227, 2, 171, 220, 36, 138, 90, 118, 101, 242, 63, 233, 109, 168, 219, 27, 152, 88, 35, 75, 131 },
-                            PasswordSalt = new byte[] { 22, 134, 247, 213, 23, 95, 193, 162, 201, 82, 47, 24, 49, 106, 127, 92, 240, 34, 130, 111, 170, 74, 225, 213, 231, 199, 75, 1, 5, 132, 184, 135, 189, 44, 112, 29, 198, 155, 197, 166, 58, 189, 241, 53, 246, 241, 226, 151, 109, 25, 234, 132, 114, 83, 245, 197, 80, 63, 41, 66, 223, 16, 118, 151, 104, 206, 239, 182, 198, 132, 184, 131, 12, 43, 117, 228, 204, 7, 4, 156, 153, 251, 221, 114, 136, 132, 197, 240, 132, 194, 26, 50, 175, 76, 153, 126, 171, 226, 160, 83, 245, 124, 82, 224, 183, 60, 13, 139, 107, 147, 158, 177, 85, 87, 224, 151, 215, 205, 181, 115, 211, 244, 172, 68, 72, 190, 29, 139 },
+                            PasswordHash = new byte[] { 29, 79, 175, 138, 48, 159, 72, 210, 209, 126, 16, 18, 194, 147, 32, 50, 62, 124, 49, 209, 236, 250, 162, 138, 94, 168, 184, 93, 196, 195, 212, 190, 194, 76, 195, 255, 109, 94, 13, 12, 160, 238, 158, 119, 179, 172, 239, 75, 0, 130, 56, 83, 104, 21, 191, 210, 235, 209, 157, 80, 222, 145, 82, 181 },
+                            PasswordSalt = new byte[] { 156, 174, 8, 100, 39, 183, 61, 192, 79, 173, 140, 140, 67, 202, 24, 5, 239, 168, 86, 31, 112, 193, 168, 52, 8, 104, 186, 236, 134, 114, 133, 51, 107, 169, 159, 140, 56, 23, 217, 235, 70, 117, 21, 63, 226, 249, 254, 222, 75, 147, 213, 43, 204, 107, 24, 71, 59, 94, 59, 118, 16, 164, 135, 65, 120, 221, 173, 196, 48, 13, 44, 106, 102, 223, 115, 18, 27, 46, 239, 82, 141, 45, 76, 126, 143, 157, 129, 56, 4, 245, 17, 37, 123, 199, 249, 75, 115, 101, 26, 225, 40, 166, 99, 63, 58, 41, 10, 70, 198, 196, 162, 157, 31, 3, 45, 164, 16, 106, 160, 116, 122, 38, 31, 95, 62, 158, 208, 140 },
                             PhoneNumber = "05321234567",
                             Position = "Junior Developer",
                             Profession = "Software Developer",
@@ -647,8 +662,8 @@ namespace DataAccess.Migrations
                             EmailForRegister = "furkanaltinbarin@gmail.com",
                             FirstName = "Furkan",
                             LastName = "Altınbarın",
-                            PasswordHash = new byte[] { 4, 84, 244, 112, 207, 247, 178, 129, 236, 44, 204, 204, 178, 0, 110, 211, 48, 87, 98, 208, 222, 254, 84, 13, 29, 21, 150, 234, 61, 11, 237, 212, 30, 98, 170, 121, 3, 132, 238, 120, 25, 237, 177, 89, 87, 88, 158, 43, 214, 72, 205, 208, 242, 51, 111, 30, 52, 98, 232, 94, 159, 101, 104, 249 },
-                            PasswordSalt = new byte[] { 111, 7, 179, 124, 52, 58, 186, 80, 46, 6, 120, 160, 127, 52, 109, 98, 190, 192, 49, 64, 25, 130, 213, 99, 17, 111, 246, 116, 25, 204, 215, 40, 236, 162, 205, 150, 90, 103, 90, 185, 186, 121, 23, 55, 23, 65, 194, 32, 3, 177, 178, 40, 169, 214, 44, 129, 92, 125, 161, 166, 51, 20, 29, 10, 11, 47, 234, 129, 105, 159, 120, 68, 44, 174, 241, 181, 126, 69, 44, 96, 139, 228, 160, 4, 220, 132, 71, 110, 132, 56, 98, 20, 120, 254, 131, 230, 32, 98, 203, 187, 186, 22, 160, 140, 3, 240, 186, 123, 127, 173, 51, 165, 85, 22, 124, 127, 30, 105, 238, 233, 206, 65, 230, 196, 225, 190, 213, 38 },
+                            PasswordHash = new byte[] { 35, 120, 255, 13, 227, 233, 118, 236, 200, 19, 57, 254, 38, 51, 43, 69, 71, 179, 243, 175, 162, 32, 159, 252, 132, 32, 241, 217, 149, 201, 21, 95, 202, 67, 113, 55, 84, 155, 250, 115, 19, 182, 169, 157, 204, 72, 141, 226, 149, 80, 14, 34, 78, 135, 92, 156, 211, 126, 150, 86, 1, 66, 90, 250 },
+                            PasswordSalt = new byte[] { 109, 131, 29, 105, 235, 143, 78, 77, 101, 136, 238, 149, 240, 40, 41, 23, 231, 7, 81, 172, 90, 208, 219, 27, 93, 221, 183, 38, 129, 107, 77, 87, 9, 124, 172, 172, 160, 233, 155, 152, 199, 166, 161, 49, 22, 111, 16, 219, 194, 10, 159, 20, 49, 134, 230, 167, 99, 18, 107, 70, 165, 190, 1, 75, 75, 102, 162, 95, 150, 162, 126, 134, 99, 250, 128, 67, 112, 149, 150, 245, 89, 205, 52, 44, 90, 158, 160, 190, 174, 201, 63, 163, 111, 192, 109, 84, 55, 65, 220, 137, 111, 135, 170, 157, 131, 223, 31, 21, 161, 19, 148, 185, 66, 19, 131, 119, 93, 165, 1, 243, 98, 217, 239, 133, 64, 245, 211, 170 },
                             PhoneNumber = "05321234567",
                             Position = "Head of Department",
                             Profession = "Software Developer",
@@ -671,8 +686,8 @@ namespace DataAccess.Migrations
                             EmailForRegister = "mehmetcatmakasli@gmail.com",
                             FirstName = "Mehmet",
                             LastName = "Çatmakaşlı",
-                            PasswordHash = new byte[] { 184, 104, 204, 141, 152, 13, 201, 66, 230, 79, 244, 180, 22, 235, 136, 209, 115, 215, 212, 38, 198, 87, 43, 87, 132, 162, 167, 238, 191, 74, 68, 4, 16, 98, 135, 255, 221, 39, 234, 26, 244, 183, 70, 74, 193, 139, 250, 237, 189, 36, 177, 106, 37, 38, 122, 97, 68, 38, 210, 180, 45, 96, 9, 100 },
-                            PasswordSalt = new byte[] { 217, 90, 220, 107, 178, 218, 76, 159, 32, 190, 47, 36, 223, 197, 94, 6, 116, 162, 76, 128, 39, 72, 58, 64, 255, 18, 80, 241, 28, 94, 68, 15, 30, 217, 237, 151, 222, 157, 31, 213, 54, 194, 20, 92, 239, 123, 234, 0, 35, 25, 194, 174, 216, 64, 220, 15, 206, 82, 171, 141, 45, 135, 85, 44, 49, 163, 245, 124, 111, 92, 137, 164, 162, 126, 234, 246, 63, 145, 200, 46, 24, 54, 117, 118, 8, 124, 197, 86, 51, 250, 127, 178, 150, 40, 218, 125, 67, 233, 102, 1, 95, 55, 8, 239, 198, 126, 108, 176, 178, 104, 249, 143, 168, 16, 235, 90, 171, 141, 181, 74, 193, 39, 42, 227, 32, 171, 21, 138 },
+                            PasswordHash = new byte[] { 131, 228, 134, 185, 20, 79, 33, 109, 119, 96, 70, 137, 250, 112, 21, 102, 17, 127, 117, 234, 44, 211, 251, 174, 165, 51, 78, 108, 127, 236, 197, 154, 82, 98, 53, 111, 213, 101, 89, 13, 8, 247, 219, 141, 163, 248, 91, 242, 102, 124, 15, 190, 42, 48, 32, 175, 14, 250, 161, 204, 237, 192, 38, 136 },
+                            PasswordSalt = new byte[] { 180, 245, 55, 132, 51, 147, 130, 46, 3, 19, 68, 45, 236, 17, 196, 36, 202, 171, 233, 203, 166, 8, 215, 185, 186, 215, 127, 190, 229, 4, 179, 94, 76, 38, 91, 84, 163, 37, 79, 44, 252, 164, 82, 222, 83, 149, 13, 49, 197, 237, 171, 123, 128, 50, 47, 110, 14, 219, 200, 234, 224, 9, 214, 32, 140, 79, 61, 200, 102, 181, 231, 90, 46, 149, 53, 220, 27, 68, 169, 132, 126, 20, 201, 249, 203, 227, 162, 50, 58, 67, 251, 152, 58, 129, 85, 153, 65, 247, 65, 87, 117, 153, 209, 39, 208, 68, 142, 120, 192, 180, 214, 199, 251, 54, 153, 119, 244, 76, 214, 29, 231, 227, 17, 213, 176, 207, 98, 133 },
                             PhoneNumber = "05321234567",
                             Position = "Junior Developer",
                             Profession = "Software Developer",

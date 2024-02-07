@@ -45,6 +45,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (HrDbContext context = new HrDbContext())
             {
+
                 var vocationRequests = from vocationLeaveRequest in context.VocationLeaveRequests
                                        join vocationLeaveType in context.VocationLeaveTypes on vocationLeaveRequest.VocationLeaveTypeId equals vocationLeaveType.Id
                                        join requestApprovalStatus in context.RequestApprovalStatuses on vocationLeaveRequest.RequestApprovalStatusId equals requestApprovalStatus.Id
@@ -60,8 +61,17 @@ namespace DataAccess.Concrete.EntityFramework
                                            StartingDate = vocationLeaveRequest.StartingDate,
                                            EndingDate = vocationLeaveRequest.EndingDate,
                                            ResponseDate = vocationLeaveRequest.ResponseDate,
-                                           RequestDate = vocationLeaveRequest.RequestDate
+                                           RequestDate = vocationLeaveRequest.RequestDate,
+                                           Status = vocationLeaveRequest.Status
                                        };
+
+                foreach (var vocationRequest in vocationRequests)
+                {
+                    if(vocationRequest.StartingDate.Day>DateTime.Now.Day)
+                    {
+                           vocationRequest.Status = false;
+                    }
+                }
 
                 return vocationRequests.ToList();
             }
@@ -120,11 +130,13 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var request = context.VocationLeaveRequests.Where(x => x.Id == dto.Id).FirstOrDefault();
 
+
                 if (request != null)
                 {
 
                     request.RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == dto.RequestApprovalStatusName).Select(x => x.Id).FirstOrDefault();
                     request.ResponseDate = DateTime.Now;
+                    request.Status = false;
                     context.SaveChanges();
 
                     return new SuccessResult();

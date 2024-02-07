@@ -47,7 +47,8 @@ namespace DataAccess.Concrete.EntityFramework
                                             RequestApprovalStatusName = requestApprovalStatus.Name,
                                             RequestDate = advanceRequest.RequestDate,
                                             Type = advanceRequest.Type,
-                                            ResponseDate = advanceRequest.ResponseDate
+                                            ResponseDate = advanceRequest.ResponseDate,
+                                            Status = advanceRequest.Status
                                         };
 
                 return advanceRequestDto.ToList();
@@ -64,6 +65,7 @@ namespace DataAccess.Concrete.EntityFramework
                 {
                     advanceRequest.RequestApprovalStatusId = context.RequestApprovalStatuses.Where(x => x.Name == dto.RequestApprovalStatusName).Select(x => x.Id).FirstOrDefault();
                     advanceRequest.ResponseDate = DateTime.Now;
+                    advanceRequest.Status = false;
                     context.SaveChanges();
                     return new SuccessResult();
                 }

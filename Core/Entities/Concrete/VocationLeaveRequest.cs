@@ -20,6 +20,7 @@
 
         public int? RequestApprovalStatusId { get; set; } = 1;
 
+        public bool Status { get; set; } = true;
 
     }
 }
