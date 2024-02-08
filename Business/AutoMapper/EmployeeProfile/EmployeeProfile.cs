@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.BusinessRule;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -21,6 +22,7 @@ namespace Business.AutoMapper.EmployeeProfile
             CreateMap<Employee, UserForRegisterDto>().ReverseMap();
             CreateMap<Employee, EmployeeProfileDto>().ReverseMap();
             CreateMap<Employee, ForgotPasswordDto>().ReverseMap();
+            //CreateMap<Firm, FirmAddDto>().ReverseMap();
         }
     }
 }

@@ -78,5 +78,13 @@ namespace Business.Constants
         public static string VocationLeaveRequestAdded = "İzin isteği başarıyla eklendi.";
         public static string VocationLeaveRequestNotAdded = "İzin isteği eklenemedi";
 
+
+
+        public static string FirmCanNotUpdated = "Firma güncellenirken hata oluştu";
+        public static string FirmUpdated = "Firma güncellendi";
+
+
+
+
     }
 }

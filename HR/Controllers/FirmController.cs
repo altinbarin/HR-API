@@ -37,5 +37,17 @@ namespace HR.Controllers
             }
             return BadRequest(result.Message);
         }
+
+
+        [HttpPost("updatefirm")]
+        public IActionResult UpdateFirm(FirmUpdateDto dto)
+        {
+            var result = _firmService.UpdateFirm(dto);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

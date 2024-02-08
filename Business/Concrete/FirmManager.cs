@@ -31,6 +31,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.FirmCanNotAdded);
             }
             _firmDal.Add(firm);
+
             return new SuccessResult(Messages.FirmAdded);
         }
 
@@ -43,6 +44,18 @@ namespace Business.Concrete
             }
             result.Sort((x, y) => x.Name.CompareTo(y.Name));
             return new SuccessDataResult<List<Firm>>(result);
+        }
+
+        public IResult UpdateFirm(FirmUpdateDto dto)
+        {
+            var result = _firmDal.Get(f => f.Id == dto.Id);
+            if(result == null)
+            {
+                return new ErrorResult(Messages.FirmCanNotUpdated);
+            }
+            result.IsActive = dto.IsActive;
+            _firmDal.Update(result);
+            return new SuccessResult(Messages.FirmUpdated);
         }
     }
 }

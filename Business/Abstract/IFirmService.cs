@@ -9,5 +9,7 @@ namespace Business.Abstract
         public IDataResult<List<Firm>> GetAll();
 
         public IResult AddFirm(FirmAddDto dto);
+
+        public IResult UpdateFirm(FirmUpdateDto dto);
     }
 }

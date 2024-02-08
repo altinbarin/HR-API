@@ -3,6 +3,7 @@ using Autofac.Extras.DynamicProxy;
 using AutoMapper;
 using Business.Abstract;
 using Business.AutoMapper.EmployeeProfile;
+using Business.AutoMapper.FirmProfile;
 using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
@@ -45,7 +46,10 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {               
-                cfg.AddProfile(new EmployeeProfile());
+                cfg.AddProfile(new EmployeeProfile()
+                    );
+                cfg.AddProfile(new FirmProfile()
+                    );
             })).AsSelf().SingleInstance();
 
             builder.Register(context => context.Resolve<MapperConfiguration>().CreateMapper())
