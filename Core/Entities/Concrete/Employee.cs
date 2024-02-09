@@ -20,7 +20,7 @@ namespace Entities.Concrete
         }
         public byte[] PasswordSalt { get; set; }
         public byte[] PasswordHash { get; set; }
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
         public string? SecondLastname { get; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime DateOfEmployment { get; set; }
@@ -35,7 +35,6 @@ namespace Entities.Concrete
         public string Profession { get; set; }
         public decimal Salary { get; set; }
         public byte[]? ImageData { get; set; }
-
 
         public int TitleId { get; set; }
         //public Title Title { get; set; }

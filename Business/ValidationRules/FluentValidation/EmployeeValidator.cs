@@ -15,6 +15,8 @@ namespace Business.ValidationRules.FluentValidation
             .NotEmpty().WithMessage(Messages.ThisFieldIsRequired)
             .Matches(@"^0[2-9][0-9]{8}$").WithMessage(Messages.NotAValidPhoneNumber);
 
+            RuleFor(adress => adress.Address).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
+
             RuleFor(fn => fn.FirstName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
             RuleFor(fn => fn.LastName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);

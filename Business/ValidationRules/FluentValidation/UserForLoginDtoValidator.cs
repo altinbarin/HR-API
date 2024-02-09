@@ -13,7 +13,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public UserForLoginDtoValidator()
         {
-            RuleFor(x=>x.Email).NotEmpty().EmailAddress().WithMessage(Messages.NotAValidEmail);
+            RuleFor(x=>x.Email).NotEmpty().WithMessage(Messages.NotAValidEmail).EmailAddress().WithMessage(Messages.NotAValidEmail);
 
             RuleFor(x => x.Password).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
         }

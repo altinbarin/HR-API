@@ -44,6 +44,7 @@ namespace Business.Concrete
             employee.TitleId = 1;
             employee.PasswordHash = passwordHash;
             employee.PasswordSalt = passwordSalt;
+            
 
             if (isEmailSent)
             {
@@ -52,7 +53,7 @@ namespace Business.Concrete
                 var userOperationClaim = new UserOperationClaim
                 {
                     EmployeeId = employee.Id,
-                    OperationClaimId = 2
+                    OperationClaimId = 4
                 };
                 _employeeDal.AddUserOperationClaim(userOperationClaim);
                
@@ -106,6 +107,7 @@ namespace Business.Concrete
             var claims = _employeeService.GetClaims(employee);
             var accessToken = _tokenHelper.CreateToken(employee, claims);
 
+
             //sadece ilk claim gönderiliyor. 
             accessToken.Claim = claims[0].Name;
 
@@ -136,6 +138,21 @@ namespace Business.Concrete
             }
 
             return new ErrorDataResult<ForgotPasswordDto>(Messages.EmailNotSent);
+        }
+
+        public IResult SetPassword(string email, string password)
+        {
+            var user = _employeeService.GetByMail(email);
+            if (user is null)
+            {
+                return new ErrorResult(Messages.UserNotFound);
+            }
+            byte[] passwordHash, passwordSalt;
+            HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            _employeeDal.Update(user);
+            return new SuccessResult(Messages.PasswordChanged);
         }
     }
 }

@@ -25,5 +25,8 @@ namespace Business.Abstract
         Employee GetByMail(string email);
 
         EmployeeProfileDto GetProfile(string employeeMail);
+
+        IResult UpdateEmployeeStatus(EmployeeStatusUpdateDto employeeStatusUpdateDto);
+
     }
 }

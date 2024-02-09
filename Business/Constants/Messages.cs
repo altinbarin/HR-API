@@ -13,6 +13,7 @@ namespace Business.Constants
         public static string MaxValue250 = "Maksimum 250 karakter olmalıdır";
         public static string Value16 = "16 karakter olmalıdır";
         public static string Value10 = "10 karakter olmalıdır";
+        public static string EmployeeCanNotUpdated = "Çalışan bulunamadı";
 
 
         public static string SpendingRequestUpdated = "Harcama talebi başarıyla güncellendi";

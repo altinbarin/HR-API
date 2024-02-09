@@ -42,7 +42,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<RequestApprovalStatusManager>().As<IRequestApprovalStatusService>().SingleInstance();
             builder.RegisterType<EfRequestApprovalStatusDal>().As<IRequestApprovalStatusDal>().SingleInstance();
             
+            builder.RegisterType<ClaimManager>().As<IClaimService>().SingleInstance();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>().SingleInstance(); 
 
+            builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>().SingleInstance();
 
             builder.Register(context => new MapperConfiguration(cfg =>
             {               

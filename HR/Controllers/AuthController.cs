@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace WebAPI.Controllers
 {
@@ -11,11 +12,15 @@ namespace WebAPI.Controllers
     {
         private IAuthService _authService;
         private IEmployeeService _employeeService;
+        private IHttpContextAccessor _httpContextAccessor;
+        private IClaimService _claimService;
 
-        public AuthController(IAuthService authService, IEmployeeService employeeService)
+        public AuthController(IAuthService authService, IEmployeeService employeeService, IHttpContextAccessor httpContextAccessor, IClaimService claimService)
         {
             _authService = authService;
             _employeeService = employeeService;
+            _httpContextAccessor = httpContextAccessor;
+            _claimService = claimService;
         }
 
         [HttpPost("login")]
@@ -77,5 +82,34 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+
+        [HttpPost("changepassword")]
+        public ActionResult ChangePassword(string newPassword, string claim)
+        {
+            var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+
+            var result = _authService.SetPassword(employeeMail, newPassword);
+            var result2 = _claimService.ChangeClaim(employeeMail, claim);
+
+            if (result.Success && result2.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
+
+        //[HttpPost("changeclaim")]
+        //public ActionResult ChangeClaim(string claim)
+        //{
+        //    var employeeMail = _httpContextAccessor.HttpContext.User.Claims.First(x => x.Type == ClaimTypes.Email).Value;
+        //    var result = _claimService.ChangeClaim(employeeMail, claim);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result.Message);
+        //    }
+        //    return BadRequest(result.Message);
+        //}
+
     }
 }

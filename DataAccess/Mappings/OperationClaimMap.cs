@@ -23,7 +23,13 @@ namespace DataAccess.Mappings
                                 {
                                     Id = 3,
                                     Name = "manager"
-                                });
+                                },
+                                new OperationClaim
+                                {
+                                    Id = 4,
+                                    Name = "empty"
+                                }
+                                );
         }
     }
 }

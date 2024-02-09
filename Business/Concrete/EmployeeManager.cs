@@ -10,6 +10,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Mappings;
 using Entities.Concrete;
 using Entities.DTOs;
 
@@ -50,11 +51,10 @@ namespace Business.Concrete
         }
 
         //[SecuredOperation("admin")]
-        [ValidationAspect(typeof(EmployeeUpdateDtoValidator))]
+        [ValidationAspect(typeof(EmployeeValidator))]
         public IResult Update(Employee employee)
         {
             IResult result = BusinessRules.Run(_employeeRules.CheckIfPhoneNumberExist(employee.PhoneNumber));
-
             if (result != null)
             {
                 return result;
@@ -87,6 +87,19 @@ namespace Business.Concrete
             var employee = _employeeDal.GetEmployee(h => h.Email == employeeMail);
             var employeeProfileDto = _mapper.Map<EmployeeProfileDto>(employee);
             return employeeProfileDto;
+        }
+
+        public IResult UpdateEmployeeStatus(EmployeeStatusUpdateDto employeeStatusUpdateDto)
+        {
+            var employee = _employeeDal.Get(e => e.Id == employeeStatusUpdateDto.Id);
+
+            if (employee == null)
+            {
+                return new ErrorResult(Messages.EmployeeUpdated);
+            }
+            employee.Status = employeeStatusUpdateDto.Status;
+            _employeeDal.Update(employee);
+            return new SuccessResult(Messages.EmployeeUpdated);
         }
     }
 }

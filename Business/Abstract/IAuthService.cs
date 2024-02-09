@@ -15,5 +15,7 @@ namespace Business.Abstract
 
         IDataResult<ForgotPasswordDto> ChangePassword(string email);
         public IResult UserNotExists(string email);
+
+        IResult SetPassword (string email, string password);
     }
 }

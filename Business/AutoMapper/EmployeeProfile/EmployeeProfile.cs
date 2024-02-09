@@ -23,6 +23,7 @@ namespace Business.AutoMapper.EmployeeProfile
             CreateMap<Employee, EmployeeProfileDto>().ReverseMap();
             CreateMap<Employee, ForgotPasswordDto>().ReverseMap();
             //CreateMap<Firm, FirmAddDto>().ReverseMap();
+            CreateMap<Employee, EmployeesDto>().ReverseMap();
         }
     }
 }
