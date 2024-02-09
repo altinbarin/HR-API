@@ -51,7 +51,7 @@ namespace Business.Concrete
         }
 
         //[SecuredOperation("admin")]
-        [ValidationAspect(typeof(EmployeeValidator))]
+        //[ValidationAspect(typeof(EmployeeUpdateDto))]
         public IResult Update(Employee employee)
         {
             IResult result = BusinessRules.Run(_employeeRules.CheckIfPhoneNumberExist(employee.PhoneNumber));

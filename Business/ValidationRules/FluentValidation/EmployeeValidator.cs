@@ -9,40 +9,40 @@ namespace Business.ValidationRules.FluentValidation
     {
         public EmployeeValidator()
         {
-            RuleFor(tc => tc.TurkishIdentificationNumber).Must(BeAValidTcKimlikNo).WithMessage(Messages.NotAValidTc);
+            //RuleFor(tc => tc.TurkishIdentificationNumber).Must(BeAValidTcKimlikNo).WithMessage(Messages.NotAValidTc);
 
-            RuleFor(phoneNumber => phoneNumber.PhoneNumber)
-            .NotEmpty().WithMessage(Messages.ThisFieldIsRequired)
-            .Matches(@"^0[2-9][0-9]{8}$").WithMessage(Messages.NotAValidPhoneNumber);
+            //RuleFor(phoneNumber => phoneNumber.PhoneNumber)
+            //.NotEmpty().WithMessage(Messages.ThisFieldIsRequired)
+            //.Matches(@"^0[2-9][0-9]{8}$").WithMessage(Messages.NotAValidPhoneNumber);
 
-            RuleFor(adress => adress.Address).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
+            //RuleFor(adress => adress.Address).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
 
-            RuleFor(fn => fn.FirstName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(fn => fn.FirstName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(fn => fn.LastName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(fn => fn.LastName).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(fn => fn.MiddleName).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(fn => fn.MiddleName).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(fn => fn.SecondLastname).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(fn => fn.SecondLastname).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(s => s.Salary).NotNull().GreaterThan(0).WithMessage(Messages.NotAValidSalary);
+            //RuleFor(s => s.Salary).NotNull().GreaterThan(0).WithMessage(Messages.NotAValidSalary);
 
-            RuleFor(p=>p.Profession).NotEmpty().Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p=>p.Profession).NotEmpty().Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(p => p.City).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p => p.City).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
 
-            RuleFor(d=>d.Department).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(d=>d.Department).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(p => p.Address).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p => p.Address).NotEmpty().WithMessage(Messages.ThisFieldIsRequired);
 
-            RuleFor(p => p.Position).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p => p.Position).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(p => p.Company).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p => p.Company).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(p => p.BirthLocation).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
+            //RuleFor(p => p.BirthLocation).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).Must(IsLetter).WithMessage(Messages.LetterOnly);
 
-            RuleFor(e => e.EmailForRegister).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).EmailAddress().WithMessage(Messages.NotAValidEmail);
+            //RuleFor(e => e.EmailForRegister).NotEmpty().WithMessage(Messages.ThisFieldIsRequired).EmailAddress().WithMessage(Messages.NotAValidEmail);
         }
 
       
