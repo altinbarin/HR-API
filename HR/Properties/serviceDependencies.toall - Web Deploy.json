@@ -1,3 +1,9 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "apis1": {
+      "apiEndpoint": "https://hrapi.azure-api.net/",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/HRapi/apis/HR",
+      "type": "apis.azure"
+    }
+  }
 }
